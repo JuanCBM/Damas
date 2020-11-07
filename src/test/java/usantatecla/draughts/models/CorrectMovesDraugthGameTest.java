@@ -30,6 +30,7 @@ public class CorrectMovesDraugthGameTest {
     game.move(origin, target);
     
     fail("Not yet implemented");
+    
   }
 
   // Test de mover reina varias casillas

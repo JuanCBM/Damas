@@ -30,14 +30,7 @@ public class GameTest {
 
   @Test
   public void testGame() {
-    Game game = this.gameBuilder.rows(" n n n n",
-                                      "n n n n ",
-                                      " n n n n",
-                                      "        ",
-                                      "        ",
-                                      "b b b b ",
-                                      " b b b b",
-                                      "b b b b ").build();
+    Game game = this.gameBuilder.rows(G).build();
     System.out.print(game.toString());
     assertEquals(game, new Game());
   }

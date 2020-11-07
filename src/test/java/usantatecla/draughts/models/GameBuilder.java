@@ -1,9 +1,22 @@
 package usantatecla.draughts.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GameBuilder {
 
   private Turn turn;
   private Board board;
+
+  private Map<Character, Piece> piecesMap = new HashMap<Character, Piece>() {
+    private static final long serialVersionUID = 1L;
+    {
+      put('b', new Pawn(Color.WHITE));
+      put('B', new Draught(Color.WHITE));
+      put('n', new Pawn(Color.BLACK));
+      put('N', new Draught(Color.BLACK));
+    }
+  };
 
   public GameBuilder() {
     this.board = new Board();
@@ -31,28 +44,10 @@ public class GameBuilder {
 
   private void setRow(Board board, int row, String string) {
     for (int j = 0; j < string.length(); j++) {
-      Color color = this.getColor(string.charAt(j));
-      if (color != null) {
-        Piece piece = new Pawn(color);
-        if (Character.isUpperCase(string.charAt(j))) {
-          piece = new Draught(color);
-        }
-        board.put(new Coordinate(row, j), piece);
-      }
+      Piece piece = piecesMap.get(string.charAt(j));
+      board.put(new Coordinate(row, j), piece);
     }
   }
 
-  private Color getColor(char character) {
-    switch (character) {
-      case 'b':
-      case 'B':
-        return Color.WHITE;
-      case 'n':
-      case 'N':
-        return Color.BLACK;
-      default:
-        return null;
-    }
-  }
 
 }
