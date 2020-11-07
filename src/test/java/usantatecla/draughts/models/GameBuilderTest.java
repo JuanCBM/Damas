@@ -1,0 +1,52 @@
+package usantatecla.draughts.models;
+
+import org.junit.Before;
+import org.junit.Test;
+
+//@formatter:off
+public class GameBuilderTest {
+
+  private GameBuilder gameBuilder;
+
+  @Before
+  public void prepareGameBuilder() {
+    this.gameBuilder = new GameBuilder();
+  }
+
+  @Test(expected = AssertionError.class)
+  public void testGivenGameBuilderWhenIncorrectRowsLengthThenError() {
+    this.gameBuilder.rows("n       ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "b        ").build();
+  }
+  
+  @Test(expected = AssertionError.class)
+  public void testGivenGameBuilderWhenIncorrectPieceThenError() {
+    this.gameBuilder.rows("        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "    r   ",
+                          "        ",
+                          "        ",
+                          "        ").build();
+  }
+
+  @Test(expected = AssertionError.class)
+  public void testGivenGameBuilderWhenEmptyRowshenError() {
+    this.gameBuilder.rows("        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ").build();
+  }
+
+}
