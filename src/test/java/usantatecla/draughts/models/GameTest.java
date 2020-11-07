@@ -22,11 +22,6 @@ public class GameTest {
   }
 
   @Test
-  public void testGivenGameWhenStartThenIsWhiteTurn() {
-    assertEquals(new Game().getTurnColor(), Color.WHITE);
-  }
-
-  @Test
   public void testGivenEmptyBoardWhenCreateGameThenEmptyBoard() {
     //@formatter:off
     Game game = this.gameBuilder.rows("        ",
@@ -43,6 +38,10 @@ public class GameTest {
     assertEquals(game, new Game(new Board()));
   }
 
+  @Test
+  public void testGivenGameWhenStartThenIsWhiteTurn() {
+    assertEquals(new Game().getTurnColor(), Color.WHITE);
+  }
 
   @Test
   public void testGivenBoardWhenResetThenIsReseted() {
@@ -59,13 +58,10 @@ public class GameTest {
                                           .build();
     //@formatter:on
 
-
     gameFinished.reset();
-
     assertEquals(gameFinished, new Game());
 
   }
-
 
   @Test
   public void testGivenGameWhenGameCancelThen() {

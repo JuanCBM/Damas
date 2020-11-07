@@ -142,7 +142,6 @@ public class CorrectMovesDraugthGameTest {
 
   }
 
-  // TODO: Fix multi eating
   @Test
   public void testGivenGameWhenDraughtMoveThenMultiEats() {
     // @formatter:off
@@ -170,10 +169,9 @@ public class CorrectMovesDraugthGameTest {
     assertNotNull(game.getPiece(eaten2));
     assertNull(game.getPiece(target2));
 
-    game.move(origin, target);
+    game.move(origin, target, target, target2);
     assertEquals(game.getTurnColor(), Color.WHITE);
 
-    System.out.print(game);
   }
 
 
