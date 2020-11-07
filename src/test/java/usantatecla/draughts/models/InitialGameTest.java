@@ -1,13 +1,10 @@
 package usantatecla.draughts.models;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GameTest {
-
+public class InitialGameTest {
   GameBuilder gameBuilder;
 
   @Before
@@ -19,11 +16,6 @@ public class GameTest {
   public void testWhenCreateGameThenIsInitialGame() {
     Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).color(Color.WHITE).build();
     assertEquals(game, new Game());
-  }
-
-  @Test
-  public void testGivenGameWhenStartThenIsWhiteTurn() {
-    assertEquals(new Game().getTurnColor(), Color.WHITE);
   }
 
   @Test
@@ -43,6 +35,10 @@ public class GameTest {
     assertEquals(game, new Game(new Board()));
   }
 
+  @Test
+  public void testGivenGameWhenStartThenIsWhiteTurn() {
+    assertEquals(new Game().getTurnColor(), Color.WHITE);
+  }
 
   @Test
   public void testGivenBoardWhenResetThenIsReseted() {
@@ -65,52 +61,4 @@ public class GameTest {
     assertEquals(gameFinished, new Game());
 
   }
-
-
-  @Test
-  public void testGivenGameWhenGameCancelThen() {
-    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
-    game.cancel();
-
-    System.out.print(game);
-    assertTrue(game.isBlocked());
-
-  }
-
-  @Test
-  public void testGivenCoordinateWhenGetColorThenWhite() {
-    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
-    assertEquals(game.getColor(new Coordinate(7, 0)), Color.WHITE);
-  }
-
-  @Test
-  public void testGivenCoordinateWhenGetColorThenBlack() {
-    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
-    assertEquals(game.getColor(new Coordinate(0, 1)), Color.BLACK);
-  }
-
-  @Test
-  public void testGivenGameWhenGetPieceThenIsWhite() {
-    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
-    assertEquals(game.getPiece(new Coordinate(7, 0)), new Pawn(Color.WHITE));
-  }
-
-  @Test
-  public void testGivenGameWhenGetPieceThenIsBlack() {
-    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
-    assertEquals(game.getPiece(new Coordinate(0, 1)), new Pawn(Color.BLACK));
-  }
-
-  @Test
-  public void testGivenGameWhenGetPieceThenIsEmpty() {
-    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
-    assertNull(game.getPiece(new Coordinate(3, 3)));
-  }
-
-  @Test
-  public void testGivenGameWhenGetDimentionThenIsEigth() {
-    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
-    assertEquals(game.getDimension(), 8);
-  }
-
 }
