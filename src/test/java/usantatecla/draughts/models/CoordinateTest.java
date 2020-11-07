@@ -10,7 +10,7 @@ import org.junit.Test;
 public class CoordinateTest {
 
   @Test
-  public void testGivenRowColumnWhenCoordinateThenOk() {
+  public void testGivenRowColumnWhenCreateCoordinateThenOk() {
     int row = 4;
     int column = 5;
     Coordinate coordinate = new Coordinate(row, column);
@@ -21,13 +21,13 @@ public class CoordinateTest {
   }
 
   @Test
-  public void testGivenCoordinateWhenGetInstanceIsOk() {
+  public void testGivenCoordinateWhenGetInstanceThenOk() {
     assertEquals(Coordinate.getInstance("61"), new Coordinate(5, 0));
   }
 
   @Test
-  public void testGivenCoordinateWhenGetInstanceIsExistingOk() {
-    Coordinate.getInstance("61,23");
+  public void testGivenCoordinateWhenGetInstanceExistingThenOk() {
+    Coordinate.getInstance("61");
     assertEquals(Coordinate.getInstance("61"), new Coordinate(5, 0));
   }
 

@@ -13,7 +13,7 @@ import org.junit.runners.Suite.SuiteClasses;
   DirectionTest.class,
   GameTest.class,
   GameBuilderTest.class,
-  IncorrectMovesDraugthGameTest.class,
+  IncorrectMovesDraughtGameTest.class,
   IncorrectMovesPawnGameTest.class,
   InitialGameTest.class,
   IsBlockedGameTest.class,

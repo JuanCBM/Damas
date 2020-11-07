@@ -1,8 +1,8 @@
 package usantatecla.draughts.models;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -64,13 +64,17 @@ public class GameTest {
   }
 
   @Test
-  public void testGivenGameWhenGameCancelThen() {
+  public void testGivenGameWhenGameCancelThenOk() {
     Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
     game.cancel();
-
-    System.out.print(game);
-    assertTrue(game.isBlocked());
-
+    for (int i = 0; i < Coordinate.getDimension(); i++) {
+      for (int j = 0; j < Coordinate.getDimension(); j++) {
+        Coordinate coordinate = new Coordinate(i, j);
+        if (game.getPiece(coordinate) != null) {
+          assertNotEquals(game.getPiece(coordinate).getColor(), Color.WHITE);
+        }
+      }
+    }
   }
 
   @Test

@@ -61,7 +61,6 @@ public class GameBuilderTest {
                           "        ",
                           "        ")
     .color(Color.BLACK).build();
-    System.out.print(game);
   }
   
 }

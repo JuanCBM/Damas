@@ -89,7 +89,6 @@ public class CorrectMovesPawnGameTest {
 
   }
 
-  // TODO: Fix multi eating
   @Test
   public void testGivenGameWhenPawnMoveThenMultiEats() {
     // @formatter:off
@@ -111,15 +110,13 @@ public class CorrectMovesPawnGameTest {
     Coordinate eaten2 = new Coordinate(4, 3);
     Coordinate target2 = new Coordinate(3, 4);
 
-    assertNotNull(game.getPiece(origin));
-    assertNull(game.getPiece(target));
-    assertNotNull(game.getPiece(eaten));
-    assertNotNull(game.getPiece(eaten2));
-    assertNull(game.getPiece(target2));
-
     game.move(origin, target, target2);
-    System.out.print(game);
 
+    assertNull(game.getPiece(origin));
+    assertNull(game.getPiece(target));
+    assertNull(game.getPiece(eaten));
+    assertNull(game.getPiece(eaten2));
+    assertNotNull(game.getPiece(target2));
     assertEquals(game.getTurnColor(), Color.BLACK);
 
   }

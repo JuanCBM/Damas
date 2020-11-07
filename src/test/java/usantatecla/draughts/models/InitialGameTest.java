@@ -55,7 +55,6 @@ public class InitialGameTest {
                                           .build();
     //@formatter:on
 
-
     gameFinished.reset();
 
     assertEquals(gameFinished, new Game());
