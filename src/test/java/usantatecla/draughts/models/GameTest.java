@@ -2,19 +2,11 @@ package usantatecla.draughts.models;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import org.junit.Before;
 import org.junit.Test;
 
-public class GameTest {
+public class GameTest extends GameBuilderUser {
 
   //@formatter:off
-  private GameBuilder gameBuilder;
-
-  @Before
-  public void prepareGameBuilder() {
-    this.gameBuilder = new GameBuilder();
-  }
-
   @Test
   public void testGameBoard() {
     Game game = this.gameBuilder.rows("        ",

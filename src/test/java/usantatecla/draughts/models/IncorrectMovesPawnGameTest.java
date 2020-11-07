@@ -1,6 +1,6 @@
 package usantatecla.draughts.models;
 
-public class IncorrectMovesPawnGameTest {
+public class IncorrectMovesPawnGameTest extends GameBuilderUser{
   // Test de todos los posibles errores al mover
   /* Error!!! No te entiendo: <d><d>{,<d><d>}[0-2] 
    * Error!!! No es una coordenada del tablero Error!!! 

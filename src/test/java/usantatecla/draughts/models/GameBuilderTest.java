@@ -1,18 +1,10 @@
 package usantatecla.draughts.models;
 
-import org.junit.Before;
 import org.junit.Test;
 
 // TODO: Add asserts to GameBuilder to control next situations:
 //@formatter:off
-public class GameBuilderTest {
-
-  private GameBuilder gameBuilder;
-
-  @Before
-  public void prepareGameBuilder() {
-    this.gameBuilder = new GameBuilder();
-  }
+public class GameBuilderTest extends GameBuilderUser{
 
   @Test(expected = AssertionError.class)
   public void testGivenGameBuilderWhenIncorrectRowsLengthThenError() {
