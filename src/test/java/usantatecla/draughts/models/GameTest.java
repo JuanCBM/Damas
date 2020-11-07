@@ -56,23 +56,6 @@ public class GameTest {
     
   }
 
-  @Test
-  public void testGivenGameWhenMoveThenPieceIsMoved() {
-    fail("Not yet implemented");
-  }
-  
-  // Test de todos los posibles errores al mover
-
-  @Test
-  public void testGivenGameWhenMoveThenIsBlocked() {
-    fail("Not yet implemented");
-  }
-  
-  @Test
-  public void testGivenGameWhenMoveThenIsNotBlocked() {
-    fail("Not yet implemented");
-  }
-  
 
   @Test
   public void testGivenGameWhenGameCancelThen() {
