@@ -50,4 +50,18 @@ public class GameBuilderTest {
                           "        ").build();
   }
 
+  @Test()
+  public void testGivenGameBuilderWhenEmptyRowsNo() {
+    Game game = this.gameBuilder.rows("        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ")
+    .color(Color.BLACK).build();
+    System.out.print(game);
+  }
+  
 }

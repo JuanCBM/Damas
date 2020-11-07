@@ -1,7 +1,8 @@
 package usantatecla.draughts.models;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,9 +15,21 @@ public class GameTest {
     this.gameBuilder = new GameBuilder();
   }
 
-  //@formatter:off
   @Test
-  public void testGameBoard() {
+  public void testWhenCreateGameThenIsInitialGame() {
+    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).color(Color.WHITE).build();
+
+    assertEquals(game, new Game());
+  }
+
+  @Test
+  public void testGivenGameWhenStartThenIsWhiteTurn() {
+    assertEquals(new Game().getTurnColor(), Color.WHITE);
+  }
+
+  @Test
+  public void testGivenEmptyBoardWhenCreateGameThenEmptyBoard() {
+    //@formatter:off
     Game game = this.gameBuilder.rows("        ",
                                       "        ",
                                       "        ",
@@ -24,77 +37,81 @@ public class GameTest {
                                       "        ",
                                       "        ",
                                       "        ",
-                                      "        ").build();
+                                      "        ")
+                                .build();
+    //@formatter:on
+
     assertEquals(game, new Game(new Board()));
   }
 
-  @Test
-  public void testGame() {
-    Game game = this.gameBuilder.rows(G).build();
-    System.out.print(game.toString());
-    assertEquals(game, new Game());
-  }
 
   @Test
   public void testGivenBoardWhenResetThenIsReseted() {
-    Game game = this.gameBuilder.rows("        ",
-                                      "        ",
-                                      " n      ",
-                                      "        ",
-                                      "        ",
-                                      "        ",
-                                      "        ",
-                                      "        ").build();
-    game.reset();
-    assertEquals(game, new Game());
-    
+    //@formatter:off
+    Game gameFinished = this.gameBuilder.rows("        ",
+                                              "        ",
+                                              "        ",
+                                              "        ",
+                                              "        ",
+                                              "        ",
+                                              "        ",
+                                              "B       ")
+                                          .color(Color.BLACK)
+                                          .build();
+    //@formatter:on
+
+
+    gameFinished.reset();
+
+    assertEquals(gameFinished, new Game());
+
   }
 
 
   @Test
   public void testGivenGameWhenGameCancelThen() {
-    fail("Not yet implemented");
+    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
+    game.cancel();
+
+    System.out.print(game);
+    assertTrue(game.isBlocked());
+
   }
 
   @Test
   public void testGivenCoordinateWhenGetColorThenWhite() {
-    fail("Not yet implemented");
+    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
+    assertEquals(game.getColor(new Coordinate(7, 0)), Color.WHITE);
   }
 
   @Test
   public void testGivenCoordinateWhenGetColorThenBlack() {
-    fail("Not yet implemented");
-  }
-  
-  
-  @Test
-  public void testGivenGameWhenMoveWhiteThenIsBlackTurn() {
-    fail("Not yet implemented");
-  }
-  
-  @Test
-  public void testGivenGameWhenMoveBlackThenIsWhiteTurn() {
-    fail("Not yet implemented");
+    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
+    assertEquals(game.getColor(new Coordinate(0, 1)), Color.BLACK);
   }
 
   @Test
   public void testGivenGameWhenGetPieceThenIsWhite() {
-    fail("Not yet implemented");
+    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
+    assertEquals(game.getPiece(new Coordinate(7, 0)), new Pawn(Color.WHITE));
   }
 
   @Test
   public void testGivenGameWhenGetPieceThenIsBlack() {
-    fail("Not yet implemented");
+    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
+    assertEquals(game.getPiece(new Coordinate(0, 1)), new Pawn(Color.BLACK));
   }
-  
+
   @Test
   public void testGivenGameWhenGetPieceThenIsEmpty() {
-    fail("Not yet implemented");
+    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
+    assertNull(game.getPiece(new Coordinate(3, 3)));
   }
-  
+
   @Test
   public void testGivenGameWhenGetDimentionThenIsEigth() {
-    fail("Not yet implemented");
+    Game game = this.gameBuilder.rows(GameBuilder.INITIAL_BOARD).build();
+    assertEquals(game.getDimension(), 8);
   }
 
 }

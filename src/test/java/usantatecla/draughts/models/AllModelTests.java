@@ -5,7 +5,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({GameTest.class})
+@SuiteClasses({GameTest.class, CorrectMovesDraugthGameTest.class, CorrectMovesPawnGameTest.class,
+    IsBlockedGameTest.class})
 public class AllModelTests {
 
 }
