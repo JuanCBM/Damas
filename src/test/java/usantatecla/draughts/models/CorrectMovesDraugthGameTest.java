@@ -169,7 +169,7 @@ public class CorrectMovesDraugthGameTest {
     assertNotNull(game.getPiece(eaten2));
     assertNull(game.getPiece(target2));
 
-    game.move(origin, target, target, target2);
+    game.move(origin, target, target2);
     assertEquals(game.getTurnColor(), Color.WHITE);
 
   }

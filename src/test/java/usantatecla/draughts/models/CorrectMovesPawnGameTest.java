@@ -117,8 +117,10 @@ public class CorrectMovesPawnGameTest {
     assertNotNull(game.getPiece(eaten2));
     assertNull(game.getPiece(target2));
 
-    game.move(origin, target, target, target2);
-    assertEquals(game.getTurnColor(), Color.WHITE);
+    game.move(origin, target, target2);
+    System.out.print(game);
+
+    assertEquals(game.getTurnColor(), Color.BLACK);
 
   }
 
