@@ -55,7 +55,7 @@ public class IsBlockedGameTest {
                                       "        ",
                                       "        ", 
                                       " n      ", 
-                                      "b       ")
+                                      "B       ")
                                 .build();
     // @formatter:on
 

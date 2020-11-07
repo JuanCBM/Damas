@@ -4,9 +4,21 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+// @formatter:off
 @RunWith(Suite.class)
-@SuiteClasses({GameTest.class, CorrectMovesDraugthGameTest.class, CorrectMovesPawnGameTest.class,
-    IsBlockedGameTest.class})
+@SuiteClasses({
+  CoordinateTest.class,
+  CorrectMovesDraugthGameTest.class,
+  CorrectMovesPawnGameTest.class,
+  DirectionTest.class,
+  GameTest.class,
+  GameBuilderTest.class,
+  IncorrectMovesDraugthGameTest.class,
+  IncorrectMovesPawnGameTest.class,
+  InitialGameTest.class,
+  IsBlockedGameTest.class,
+  PieceTest.class})
+//@formatter:on
 public class AllModelTests {
 
 }

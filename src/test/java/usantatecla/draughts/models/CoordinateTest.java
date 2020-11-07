@@ -1,93 +1,193 @@
 package usantatecla.draughts.models;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 
 public class CoordinateTest {
 
   @Test
-  public void testHashCode() {
-    fail("Not yet implemented");
+  public void testGivenRowColumnWhenCoordinateThenOk() {
+    int row = 4;
+    int column = 5;
+    Coordinate coordinate = new Coordinate(row, column);
+
+    assertEquals(coordinate.getRow(), row);
+    assertEquals(coordinate.getColumn(), column);
+
   }
 
   @Test
-  public void testCoordinate() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenGetInstanceIsOk() {
+    assertEquals(Coordinate.getInstance("61"), new Coordinate(5, 0));
   }
 
   @Test
-  public void testGetInstance() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenGetInstanceIsExistingOk() {
+    Coordinate.getInstance("61,23");
+    assertEquals(Coordinate.getInstance("61"), new Coordinate(5, 0));
   }
 
   @Test
-  public void testGetDirection() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenGetDirectionThenOk() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(2, 2);
+    coordinate.getDirection(coordinate2);
+    assertEquals(coordinate.getDirection(coordinate2), Direction.NE);
   }
 
   @Test
-  public void testIsOnDiagonal() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenIsDiagonalThenIsDiagonal() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(2, 2);
+
+    assertTrue(coordinate.isOnDiagonal(coordinate2));
   }
 
   @Test
-  public void testGetDiagonalDistance() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenIsDiagonalThenIsNotDiagonal() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(2, 1);
+
+    assertFalse(coordinate.isOnDiagonal(coordinate2));
   }
 
   @Test
-  public void testGetBetweenDiagonalCoordinate() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenGetDiagonalThenOk() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(2, 2);
+
+    assertEquals(coordinate.getDiagonalDistance(coordinate2), 1);
+  }
+
+
+  @Test(expected = AssertionError.class)
+  public void testGivenCoordinateWhenGetDiagonalThenIsNotDiagonal() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(2, 1);
+    coordinate.getDiagonalDistance(coordinate2);
   }
 
   @Test
-  public void testGetBetweenDiagonalCoordinates() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenGetBetweenDiagonalCoordinateThenOk() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(3, 3);
+
+    Coordinate coordinateBetween = new Coordinate(2, 2);
+
+    assertEquals(coordinate.getBetweenDiagonalCoordinate(coordinate2), coordinateBetween);
+  }
+
+  @Test(expected = AssertionError.class)
+  public void testGivenCoordinateWhenGetBetweenDiagonalCoordinateThenMoreThanOne() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(7, 7);
+
+    coordinate.getBetweenDiagonalCoordinate(coordinate2);
+  }
+
+
+  @Test(expected = AssertionError.class)
+  public void testGivenCoordinateWhenGetDiagonalCoordinatesThenIsNotDiagonal() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(2, 3);
+    coordinate.getBetweenDiagonalCoordinates(coordinate2);
   }
 
   @Test
-  public void testGetDiagonalCoordinates() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenGetDiagonalCoordinatesThenIsOne() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(3, 3);
+
+    Coordinate coordinateBetween = new Coordinate(2, 2);
+    List<Coordinate> coordinates = new ArrayList<>();
+    coordinates.add(coordinateBetween);
+
+    assertEquals(coordinate.getBetweenDiagonalCoordinates(coordinate2), coordinates);
   }
 
   @Test
-  public void testIsBlack() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenGetDiagonalCoordinatesThenIsList() {
+    Coordinate coordinate = new Coordinate(1, 1);
+    Coordinate coordinate2 = new Coordinate(4, 4);
+
+    Coordinate coordinateBetween = new Coordinate(2, 2);
+    Coordinate coordinateBetween2 = new Coordinate(3, 3);
+
+    List<Coordinate> coordinates = new ArrayList<>();
+    coordinates.add(coordinateBetween);
+    coordinates.add(coordinateBetween2);
+
+    assertEquals(coordinate.getBetweenDiagonalCoordinates(coordinate2), coordinates);
+
+  }
+
+
+  @Test
+  public void testGivenLevelWhenGetDiagonalCoordinatesThenOk() {
+    List<Coordinate> coordinates = new ArrayList<>();
+    Coordinate coordinate = new Coordinate(1, 1);
+
+    Coordinate coordinateDiagonal4 = new Coordinate(0, 0);
+    Coordinate coordinateDiagonal1 = new Coordinate(2, 2);
+    Coordinate coordinateDiagonal2 = new Coordinate(0, 2);
+    Coordinate coordinateDiagonal3 = new Coordinate(2, 0);
+
+    coordinates.add(coordinateDiagonal1);
+    coordinates.add(coordinateDiagonal2);
+    coordinates.add(coordinateDiagonal3);
+    coordinates.add(coordinateDiagonal4);
+
+    assertEquals(coordinates.size(), coordinate.getDiagonalCoordinates(1).size());
+    for (Coordinate c : coordinate.getDiagonalCoordinates(1)) {
+      assertTrue(coordinates.contains(c));
+    }
+
   }
 
   @Test
-  public void testIsLast() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenIsBlackThenTrue() {
+    Coordinate coordinate = new Coordinate(0, 1);
+    assertTrue(coordinate.isBlack());
   }
 
   @Test
-  public void testIsFirst() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenIsBlackThenFalse() {
+    Coordinate coordinate = new Coordinate(0, 0);
+    assertFalse(coordinate.isBlack());
+  }
+
+
+  @Test
+  public void testGivenCoordinateWhenIsLastThenTrue() {
+    Coordinate coordinate = new Coordinate(7, 1);
+    assertTrue(coordinate.isLast());
   }
 
   @Test
-  public void testGetRow() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenIsLastThenFalse() {
+    Coordinate coordinate = new Coordinate(0, 0);
+    assertFalse(coordinate.isLast());
   }
 
   @Test
-  public void testGetColumn() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenIsFirstThenTrue() {
+    Coordinate coordinate = new Coordinate(0, 1);
+    assertTrue(coordinate.isFirst());
   }
 
   @Test
-  public void testGetDimension() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateWhenIsFirstThenFalse() {
+    Coordinate coordinate = new Coordinate(4, 0);
+    assertFalse(coordinate.isFirst());
   }
 
   @Test
-  public void testToString() {
-    fail("Not yet implemented");
-  }
-
-  @Test
-  public void testEqualsObject() {
-    fail("Not yet implemented");
+  public void testGivenCoordinateGetDimensionOk() {
+    assertEquals(Coordinate.getDimension(), 8);
   }
 
 }
