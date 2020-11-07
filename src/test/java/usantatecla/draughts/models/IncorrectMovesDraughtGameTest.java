@@ -1,18 +1,22 @@
 package usantatecla.draughts.models;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
+
+// Test de todos los posibles errores al mover
+/*
+ * Error!!! No te entiendo: <d><d>{,<d><d>}[0-2] Error!!! No es una coordenada del tablero
+ * Error!!! No hay ficha que mover Error!!! No es una de tus fichas Error!!! No vas en diagonal
+ * Error!!! No está vacío el destino Error!!! No comes contrarias Error!!! No se puede comer
+ * tantas en un movimiento Error!!! No avanzas Error!!! No respetas la distancia Error!!! No se
+ * puede comer tantas en un salto
+ */
+
 //@formatter:off
-public class IncorrectMovesPawnGameTest {
-  // Test de todos los posibles errores al mover
-  /*
-   * Error!!! No te entiendo: <d><d>{,<d><d>}[0-2] Error!!! No es una coordenada del tablero
-   * Error!!! No hay ficha que mover Error!!! No es una de tus fichas Error!!! No vas en diagonal
-   * Error!!! No está vacío el destino Error!!! No comes contrarias Error!!! No se puede comer
-   * tantas en un movimiento Error!!! No avanzas Error!!! No respetas la distancia Error!!! No se
-   * puede comer tantas en un salto
-   */
+public class IncorrectMovesDraughtGameTest {
+
   GameBuilder gameBuilder;
 
   @Before
@@ -26,36 +30,21 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveWHITEThenEMPTY_ORIGIN() {
-    Game game = this.gameBuilder.rows(
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ").color(Color.WHITE).build();
-    assertErrorMove(Error.EMPTY_ORIGIN,game,
-        new Coordinate(4, 3),
-        new Coordinate(3, 4));
-  }
-
-  @Test
   public void testGivenGameWhenMoveWHITEThenOPPOSITE_PIECE() {
     Game game = this.gameBuilder.rows(
         "        ",
         "        ",
-        " n      ",
+        " N      ",
         "        ",
         "        ",
         "        ",
         "        ",
-        "        ").color(Color.WHITE).build();
+        "        ").build();
     assertErrorMove(Error.OPPOSITE_PIECE,game,
         new Coordinate(2, 1),
         new Coordinate(3, 0));
   }
+
 
   @Test
   public void testGivenGameWhenMoveDownThenNOT_DIAGONAL() {
@@ -65,9 +54,9 @@ public class IncorrectMovesPawnGameTest {
         "        ",
         "        ",
         "        ",
-        "  b     ",
+        "  B     ",
         "        ",
-        "        ").color(Color.WHITE).build();
+        "        ").build();
     assertErrorMove(Error.NOT_DIAGONAL,game,
         new Coordinate(5, 2),
         new Coordinate(4, 2));
@@ -81,9 +70,9 @@ public class IncorrectMovesPawnGameTest {
         "        ",
         "        ",
         "        ",
-        "  b     ",
+        "  B     ",
         "        ",
-        "        ").color(Color.WHITE).build();
+        "        ").build();
     assertErrorMove(Error.NOT_DIAGONAL,game,
         new Coordinate(5, 2),
         new Coordinate(6, 2));
@@ -95,11 +84,11 @@ public class IncorrectMovesPawnGameTest {
         "        ",
         "        ",
         "        ",
-        "      n ",
+        "      N ",
         "       b",
         "        ",
         "        ",
-        "        ").color(Color.WHITE).build();
+        "        ").build();
     assertErrorMove(Error.NOT_EMPTY_TARGET,game,
         new Coordinate(4, 7),
         new Coordinate(3, 6));
@@ -112,66 +101,46 @@ public class IncorrectMovesPawnGameTest {
         "        ",
         "   n    ",
         "  n     ",
-        " b      ",
+        " B      ",
         "        ",
         "        ",
-        "        ").color(Color.WHITE).build();
+        "        ").build();
     assertErrorMove(Error.NOT_EMPTY_TARGET,game,
         new Coordinate(4, 1),
         new Coordinate(2, 3));
   }
 
-
   @Test
-  public void testGivenGameWhenMoveWHITEThenNOT_ADVANCED() {
+  public void testGivenGameWhenMoveWHITEEatingThenCOLLEAGUE_EATING(){
     Game game = this.gameBuilder.rows(
         "        ",
         "        ",
         "        ",
         "        ",
-        "       b",
-        "        ",
-        "        ",
-        "        ").color(Color.WHITE).build();
-    assertErrorMove(Error.NOT_ADVANCED,game,
-        new Coordinate(4, 7),
-        new Coordinate(5, 6));
-  }
-
-
-  @Test
-  public void testGivenGameWhenMoveWHITEThenWITHOUT_EATING() {
-    Game game = this.gameBuilder.rows(
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "    b   ",
-        "        ",
-        "        ").color(Color.WHITE).build();
-    assertErrorMove(Error.WITHOUT_EATING,game,
-        new Coordinate(5, 4),
-        new Coordinate(3, 2));
-  }
-
-
-  @Test
-  public void testGivenGameWhenMoveWHITEThenTOO_MUCH_ADVANCED() {
-    Game game = this.gameBuilder.rows(
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "b       ",
+        "     b  ",
+        "      B ",
         "        ",
         "        ").build();
-    assertErrorMove(Error.TOO_MUCH_ADVANCED,game,
-        new Coordinate(5, 0),
-        new Coordinate(2, 3));
+    assertErrorMove(Error.COLLEAGUE_EATING,game,
+        new Coordinate(5, 6),
+        new Coordinate(0, 1));
   }
 
+  @Test
+  public void testGivenGameWhenMoveWHITEEatingThenTOO_MUCH_EATINGS(){
+    Game game = this.gameBuilder.rows(
+        "        ",
+        "        ",
+        "   n    ",
+        "        ",
+        "     n  ",
+        "      B ",
+        "        ",
+        "        ").build();
+    assertErrorMove(Error.TOO_MUCH_EATINGS,game,
+        new Coordinate(5, 6),
+        new Coordinate(0, 1));
+  }
 
   @Test
   public void testGivenGameWhenMoveWHITEThenTOO_MUCH_JUMPS() {
@@ -180,7 +149,7 @@ public class IncorrectMovesPawnGameTest {
         "        ",
         "        ",
         "        ",
-        " b      ",
+        " B      ",
         "        ",
         "        ",
         "        ").build();
@@ -197,7 +166,7 @@ public class IncorrectMovesPawnGameTest {
         "        ",
         "        ",
         "  n     ",
-        " b      ",
+        " B      ",
         "        ",
         "        ",
         "        ").build();
@@ -206,7 +175,5 @@ public class IncorrectMovesPawnGameTest {
         new Coordinate(2, 3),
         new Coordinate(1, 2));
   }
-  
-  
 
 }
