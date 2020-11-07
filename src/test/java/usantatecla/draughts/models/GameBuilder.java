@@ -5,8 +5,19 @@ import java.util.Map;
 
 public class GameBuilder {
 
-  private Turn turn;
-  private Board board;
+  private String[] strings;
+  private Color color;
+
+  // @formatter:off
+  public static String[] INITIAL_BOARD = {" n n n n", 
+                                          "n n n n ", 
+                                          " n n n n", 
+                                          "        ", 
+                                          "        ",
+                                          "b b b b ", 
+                                          " b b b b", 
+                                          "b b b b "};
+  //@formatter:on
 
   private Map<Character, Piece> piecesMap = new HashMap<Character, Piece>() {
     private static final long serialVersionUID = 1L;
@@ -18,27 +29,25 @@ public class GameBuilder {
     }
   };
 
-  public GameBuilder() {
-    this.board = new Board();
-    this.turn = new Turn();
-  }
-
   public Game build() {
-    return new Game(this.board);
+    Board board = new Board();
+    Game game = new Game(board);
+    if (this.color != null) {
+      this.setColor(game, board);
+    }
+    for (int i = 0; i < this.strings.length; i++) {
+      this.setRow(board, i, this.strings[i]);
+    }
+    return game;
   }
 
   public GameBuilder color(Color color) {
-    this.turn = new Turn();
-    if (color == Color.BLACK) {
-      this.turn.change();
-    }
+    this.color = color;
     return this;
   }
 
   public GameBuilder rows(String... rows) {
-    for (int i = 0; i < rows.length; i++) {
-      this.setRow(board, i, rows[i]);
-    }
+    this.strings = rows;
     return this;
   }
 
@@ -49,5 +58,11 @@ public class GameBuilder {
     }
   }
 
-
+  private void setColor(Game game, Board board) {
+    if (this.color == Color.BLACK) {
+      board.put(new Coordinate(7, 0), new Pawn(Color.WHITE));
+      game.move(new Coordinate(7, 0), new Coordinate(6, 1));
+      board.remove(new Coordinate(6, 1));
+    }
+  }
 }
