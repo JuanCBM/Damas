@@ -3,7 +3,7 @@ package usantatecla.draughts.models;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 
-public class IsBlockedGameTest extends GameBuilderUser {
+public class IsBlockedGameTest {
 
   // Pierde el jugador por bloqueo
   @Test

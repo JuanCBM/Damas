@@ -3,7 +3,8 @@ package usantatecla.draughts.models;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 
-public class CorrectMovesPawnGameTest extends GameBuilderUser {
+public class CorrectMovesPawnGameTest {
+
   @Test
   public void testGivenGameWhenMoveThenPawntIsMoved() {
     fail("Not yet implemented");

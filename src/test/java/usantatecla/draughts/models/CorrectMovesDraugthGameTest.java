@@ -1,20 +1,29 @@
 package usantatecla.draughts.models;
 
 import static org.junit.Assert.fail;
+import org.junit.Before;
 import org.junit.Test;
 
-public class CorrectMovesDraugthGameTest extends GameBuilderUser {
+// @formatter:off
+public class CorrectMovesDraugthGameTest {
+  
+  GameBuilder gameBuilder;
+
+  @Before
+  public void prepareGameBuilder() {
+    this.gameBuilder = new GameBuilder();
+  }
   
   @Test
   public void testGivenGameWhenMoveThenDraughtIsMoved() {
-    Game game =  this.gameBuilder.rows(" n      ",
-                          "        ",
-                          "        ",
-                          "        ",
-                          "        ",
-                          "        ",
-                          "        ",
-                          "b        ").build();
+    Game game =  this.gameBuilder.rows( " n      ",
+                                        "        ",
+                                        "        ",
+                                        "        ",
+                                        "        ",
+                                        "        ",
+                                        "        ",
+                                        "b       ").build();
     Coordinate origin = new Coordinate(2, 1);
     Coordinate target = new Coordinate(3, 2);
     
