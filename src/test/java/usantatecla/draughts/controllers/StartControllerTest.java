@@ -1,12 +1,14 @@
 package usantatecla.draughts.controllers;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 import usantatecla.draughts.models.Color;
 import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Game;
 import usantatecla.draughts.models.GameBuilder;
+import usantatecla.draughts.models.Pawn;
 import usantatecla.draughts.models.State;
 import usantatecla.draughts.models.StateValue;
 
@@ -48,5 +50,17 @@ public class StartControllerTest {
   public void testGivenStartControllerCoordinateWhenGetColorThenOk() {
     assertEquals(this.startController.getColor(new Coordinate(0, 0)), Color.WHITE);
   }
+
+  @Test
+  public void testGivenStartControllerEmptyCoordinateWhenGetPieceThenOk() {
+    assertNull(this.startController.getPiece(new Coordinate(0, 0)));
+  }
+
+  @Test
+  public void testGivenStartControllerPawnCoordinateWhenGetPieceThenOk() {
+    assertEquals(this.startController.getPiece(new Coordinate(1, 0)).getClass(), Pawn.class);
+  }
+
+
 
 }
