@@ -2,6 +2,7 @@ package usantatecla.draughts.models;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +22,29 @@ public class CoordinateTest {
   }
 
   @Test
-  public void testGivenCoordinateWhenGetInstanceThenOk() {
+  public void testGivenFormatWhenCoordinateGetInstanceThenOk() {
     assertEquals(Coordinate.getInstance("61"), new Coordinate(5, 0));
   }
 
   @Test
-  public void testGivenCoordinateWhenGetInstanceExistingThenOk() {
+  public void testGivenFormatWhenCoordinateGetInstanceExistingThenOk() {
     Coordinate.getInstance("61");
     assertEquals(Coordinate.getInstance("61"), new Coordinate(5, 0));
+  }
+
+  @Test
+  public void testGivenFormatWhenCoordinateGetInstanceThenNull() {
+    assertNull(Coordinate.getInstance("99"));
+  }
+
+  @Test(expected = AssertionError.class)
+  public void testGivenNullFormatWhenCoordinateGetInstanceThenError() {
+    Coordinate.getInstance(null);
+  }
+
+  @Test
+  public void testGivenStringFormatWhenCoordinateGetInstanceThenNull() {
+    assertNull(Coordinate.getInstance("ab"));
   }
 
   @Test

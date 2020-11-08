@@ -21,7 +21,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenEMPTY_ORIGIN() {
+  public void testGivenGameWhenMoveThenEmptyOrigin() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -39,7 +39,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenOPPOSITE_PIECE() {
+  public void testGivenGameWhenMoveThenOppositePiece() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -57,7 +57,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveDownThenNOT_DIAGONAL() {
+  public void testGivenGameWhenMoveDownThenNotDiagonal() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -75,7 +75,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveUpThenNOT_DIAGONAL() {
+  public void testGivenGameWhenMoveUpThenNotDiagonal() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -93,7 +93,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenNOT_EMPTY_TARGET() {
+  public void testGivenGameWhenMoveThenNotEmptyTarget() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -111,7 +111,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveEatingThenNOT_EMPTY_TARGET() {
+  public void testGivenGameWhenMoveEatingThenNotEmptyTarget() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -129,7 +129,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenNOT_ADVANCED() {
+  public void testGivenGameWhenMoveThenNotAdvanced() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -147,7 +147,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenWITHOUT_EATING() {
+  public void testGivenGameWhenMoveThenWithoutEating() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -165,7 +165,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenTOO_MUCH_ADVANCED() {
+  public void testGivenGameWhenMoveThenTooMuchAdvanced() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -183,7 +183,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenTOO_MUCH_JUMPS() {
+  public void testGivenGameWhenMoveThenTooMuchJumps() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -201,7 +201,7 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveEatingThenTOO_MUCH_JUMPS() {
+  public void testGivenGameWhenMoveEatingThenTooMuchJumps() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",

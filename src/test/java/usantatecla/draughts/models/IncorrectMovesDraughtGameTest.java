@@ -20,7 +20,7 @@ public class IncorrectMovesDraughtGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenOPPOSITE_PIECE() {
+  public void testGivenGameWhenMoveThenOppositePiece() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -39,7 +39,7 @@ public class IncorrectMovesDraughtGameTest {
 
 
   @Test
-  public void testGivenGameWhenMoveDownThenNOT_DIAGONAL() {
+  public void testGivenGameWhenMoveDownThenNotDiagonal() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -57,7 +57,7 @@ public class IncorrectMovesDraughtGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveUpThenNOT_DIAGONAL() {
+  public void testGivenGameWhenMoveUpThenNotDiagonal() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -75,7 +75,7 @@ public class IncorrectMovesDraughtGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenNOT_EMPTY_TARGET() {
+  public void testGivenGameWhenMoveThenNotEmptyTarget() {
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -93,7 +93,7 @@ public class IncorrectMovesDraughtGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveEatingThenNOT_EMPTY_TARGET() {    
+  public void testGivenGameWhenMoveEatingThenNotEmptyTarget() {    
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -112,7 +112,7 @@ public class IncorrectMovesDraughtGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveEatingThenCOLLEAGUE_EATING() {    
+  public void testGivenGameWhenMoveEatingThenColleagueEating() {    
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -131,7 +131,7 @@ public class IncorrectMovesDraughtGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveEatingThenTOO_MUCH_EATINGS() {    
+  public void testGivenGameWhenMoveEatingThenTooMuchEatings() {    
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -150,7 +150,7 @@ public class IncorrectMovesDraughtGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveThenTOO_MUCH_JUMPS() {    
+  public void testGivenGameWhenMoveThenTooMuchJumps() {    
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",
@@ -169,7 +169,7 @@ public class IncorrectMovesDraughtGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveEatingThenTOO_MUCH_JUMPS() {    
+  public void testGivenGameWhenMoveEatingThenTooMuchJumps() {    
     Game game = this.gameBuilder.rows(
                                       "        ",
                                       "        ",

@@ -2,11 +2,9 @@ package usantatecla.draughts.models;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-
 import org.junit.Before;
 import org.junit.Test;
 
-// TODO: Add asserts to GameBuilder to control next situations:
 //@formatter:off
 public class GameBuilderTest {
 
@@ -26,36 +24,13 @@ public class GameBuilderTest {
                           "        ",
                           "        ",
                           "        ",
-                          "b        ").build();
-  }
-  
-  @Test(expected = AssertionError.class)
-  public void testGivenGameBuilderWhenIncorrectPieceThenError() {
-    this.gameBuilder.rows("        ",
-                          "        ",
-                          "        ",
-                          "        ",
-                          "    r   ",
-                          "        ",
-                          "        ",
-                          "        ").build();
-  }
-
-  @Test()//expected = AssertionError.class)
-  public void testGivenGameBuilderWhenEmptyRowsThenError() {
-    this.gameBuilder.rows("        ",
-                          "        ",
-                          "        ",
-                          "        ",
-                          "        ",
-                          "        ",
-                          "        ",
-                          "        ").build();
+                          "b        ")
+                    .build();
   }
 
   @Test()
-  public void testGivenGameBuilderWhenEmptyRowsNo() {
-    Game game = this.gameBuilder.rows("        ",
+  public void testGivenGameBuilderWhenEmptyRowsThenOk() {
+    this.gameBuilder.rows("        ",
                           "        ",
                           "        ",
                           "        ",
@@ -63,46 +38,49 @@ public class GameBuilderTest {
                           "        ",
                           "        ",
                           "        ")
-    .color(Color.BLACK).build();
+                    .build();
   }
 
   @Test(expected = AssertionError.class)
   public void testGivenGameBuilderWhenIncorrectRowsNumberThenError() {
     this.gameBuilder.rows(
-        "        ",
-        "        ",
-        //           "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ").build();
+                          "        ",
+                          "        ",
+                      //  "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ")
+                    .build();
   }
 
   @Test(expected = AssertionError.class)
   public void testGivenGameBuilderWhenIncorrectCharactersThenError() {
     this.gameBuilder.rows(
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "   x    ",
-        "        ",
-        "        ",
-        "        ").build();
+                          "        ",
+                          "        ",
+                          "        ",
+                          "        ",
+                          "   x    ",
+                          "        ",
+                          "        ",
+                          "        ")
+                    .build();
   }
 
   @Test
   public void testGivenGameBuilderWhenCorrectRowsThenOk() {
     Game game = this.gameBuilder.rows(
-        " n      ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "b       ").build();
+                                      " n      ",
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "b       ")
+                                .build();
     assertNull(game.getColor(new Coordinate(0, 0)));
     assertEquals(Color.BLACK, game.getColor(new Coordinate(0, 1)));
     assertEquals(Color.WHITE, game.getColor(new Coordinate(7, 0)));

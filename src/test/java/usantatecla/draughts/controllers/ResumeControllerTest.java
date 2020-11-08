@@ -1,7 +1,6 @@
 package usantatecla.draughts.controllers;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
 import usantatecla.draughts.models.Game;
@@ -15,7 +14,7 @@ public class ResumeControllerTest {
   private ResumeController resumeController;
 
   @Before
-  public void before(){
+  public void before() {
     Game game = new GameBuilder().build();
     this.state = new State();
     this.resumeController = new ResumeController(game, state);
@@ -43,4 +42,10 @@ public class ResumeControllerTest {
     assertEquals(StateValue.EXIT, this.state.getValueState());
     resumeController.next();
   }
+
+  @Test(expected = AssertionError.class)
+  public void testGivenResumeControllerWhenAcceptThenError() {
+    this.resumeController.accept(null);
+  }
+
 }
