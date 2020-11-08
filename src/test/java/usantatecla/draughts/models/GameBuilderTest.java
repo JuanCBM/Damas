@@ -1,5 +1,8 @@
 package usantatecla.draughts.models;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,8 +41,8 @@ public class GameBuilderTest {
                           "        ").build();
   }
 
-  @Test(expected = AssertionError.class)
-  public void testGivenGameBuilderWhenEmptyRowshenError() {
+  @Test()//expected = AssertionError.class)
+  public void testGivenGameBuilderWhenEmptyRowsThenError() {
     this.gameBuilder.rows("        ",
                           "        ",
                           "        ",
@@ -61,6 +64,49 @@ public class GameBuilderTest {
                           "        ",
                           "        ")
     .color(Color.BLACK).build();
+  }
+
+  @Test(expected = AssertionError.class)
+  public void testGivenGameBuilderWhenIncorrectRowsNumberThenError() {
+    this.gameBuilder.rows(
+        "        ",
+        "        ",
+        //           "        ",
+        "        ",
+        "        ",
+        "        ",
+        "        ",
+        "        ").build();
+  }
+
+  @Test(expected = AssertionError.class)
+  public void testGivenGameBuilderWhenIncorrectCharactersThenError() {
+    this.gameBuilder.rows(
+        "        ",
+        "        ",
+        "        ",
+        "        ",
+        "   x    ",
+        "        ",
+        "        ",
+        "        ").build();
+  }
+
+  @Test
+  public void testGivenGameBuilderWhenCorrectRowsThenOk() {
+    Game game = this.gameBuilder.rows(
+        " n      ",
+        "        ",
+        "        ",
+        "        ",
+        "        ",
+        "        ",
+        "        ",
+        "b       ").build();
+    assertNull(game.getColor(new Coordinate(0, 0)));
+    assertEquals(Color.BLACK, game.getColor(new Coordinate(0, 1)));
+    assertEquals(Color.WHITE, game.getColor(new Coordinate(7, 0)));
+    assertNull(game.getColor(new Coordinate(7, 1)));
   }
   
 }

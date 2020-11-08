@@ -5,39 +5,20 @@ import org.junit.Test;
 
 public class PieceTest {
 
-  @Test
-  public void testPiece() {
-    fail("Not yet implemented");
-  }
 
-  @Test
-  public void testIsCorrectMovement() {
-    fail("Not yet implemented");
-  }
 
-  @Test
-  public void testIsCorrectDiagonalMovement() {
-    fail("Not yet implemented");
-  }
+    @Test
+    public void testGivenPieceWhenIsAdvancedThenTrue(){
+      assertTrue(new Pawn(Color.WHITE).isAdvanced(new Coordinate(5,0), new Coordinate(4,1)));
+      assertTrue(new Pawn(Color.BLACK).isAdvanced(new Coordinate(2,1), new Coordinate(3,2)));
+    }
 
-  @Test
-  public void testIsLimit() {
-    fail("Not yet implemented");
-  }
-
-  @Test
-  public void testIsAdvanced() {
-    fail("Not yet implemented");
-  }
-
-  @Test
-  public void testGetColor() {
-    fail("Not yet implemented");
-  }
-
-  @Test
-  public void testGetCode() {
-    fail("Not yet implemented");
-  }
+    @Test
+    public void testGivenPieceWhenNotIsAdvancedThenFalse(){
+      assertFalse(new Pawn(Color.WHITE).isAdvanced(new Coordinate(5,0), new Coordinate(6,1)));
+      assertFalse(new Pawn(Color.WHITE).isAdvanced(new Coordinate(5,0), new Coordinate(5,2)));
+      assertFalse(new Pawn(Color.BLACK).isAdvanced(new Coordinate(2,1), new Coordinate(2,3)));
+      assertFalse(new Pawn(Color.BLACK).isAdvanced(new Coordinate(2,1), new Coordinate(1,2)));
+    }
 
 }

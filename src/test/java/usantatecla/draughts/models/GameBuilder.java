@@ -1,15 +1,23 @@
 package usantatecla.draughts.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class GameBuilder {
 
-  private String[] strings;
+  private final List<String> strings;
   private Color color;
 
+  public GameBuilder() {
+    this.color = null;
+    this.strings = new ArrayList<>();
+  }
+
   // @formatter:off
-  public static String[] INITIAL_BOARD = {" n n n n", 
+  public static String[] INITIAL_BOARD = {" n n n n",
                                           "n n n n ", 
                                           " n n n n", 
                                           "        ", 
@@ -19,7 +27,7 @@ public class GameBuilder {
                                           "b b b b "};
   //@formatter:on
 
-  private Map<Character, Piece> piecesMap = new HashMap<Character, Piece>() {
+  private final Map<Character, Piece> piecesMap = new HashMap<Character, Piece>() {
     private static final long serialVersionUID = 1L;
     {
       put('b', new Pawn(Color.WHITE));
@@ -30,14 +38,19 @@ public class GameBuilder {
   };
 
   public Game build() {
+    if (this.strings.size() == 0)
+      return new Game();
+
     Board board = new Board();
     Game game = new Game(board);
     if (this.color != null) {
       this.setColor(game, board);
     }
-    for (int i = 0; i < this.strings.length; i++) {
-      this.setRow(board, i, this.strings[i]);
+    assert this.strings.size() == Coordinate.getDimension();
+    for (int i = 0; i < this.strings.size(); i++) {
+      this.setRow(board, i, this.strings.get(i));
     }
+
     return game;
   }
 
@@ -47,7 +60,10 @@ public class GameBuilder {
   }
 
   public GameBuilder rows(String... rows) {
-    this.strings = rows;
+    for (String string : rows) {
+      assert Pattern.matches("[bBnN ]{8}", string);
+      this.strings.add(string);
+    }
     return this;
   }
 
