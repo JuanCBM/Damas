@@ -1,11 +1,15 @@
 package usantatecla.draughts.models;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import org.javatuples.Triplet;
 import org.junit.Test;
 
 public class CoordinateTest {
@@ -45,6 +49,20 @@ public class CoordinateTest {
   @Test
   public void testGivenStringFormatWhenCoordinateGetInstanceThenNull() {
     assertNull(Coordinate.getInstance("ab"));
+  }
+
+  @Test
+  public void testGivenCoordinatesWhenGetDirectionThenOkWithTuples() {
+    List<Triplet<Coordinate, Coordinate, Direction>> orioginDestinationExpectedDirection =
+        Arrays.asList(
+            new Triplet<>(Coordinate.getInstance("33"), Coordinate.getInstance("15"), Direction.SE),
+            new Triplet<>(Coordinate.getInstance("33"), Coordinate.getInstance("22"), Direction.SW),
+            new Triplet<>(Coordinate.getInstance("33"), Coordinate.getInstance("42"), Direction.NW),
+            new Triplet<>(Coordinate.getInstance("33"), Coordinate.getInstance("66"),
+                Direction.NE));
+    for (Triplet<Coordinate, Coordinate, Direction> triplet : orioginDestinationExpectedDirection) {
+      assertThat(triplet.getValue0().getDirection(triplet.getValue1()), is(triplet.getValue2()));
+    }
   }
 
   @Test
