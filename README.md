@@ -1,8 +1,8 @@
-<h1 align="center">Solución pruebasUnitariasSinDobles   👨🏻‍💻   </h1>
+<h1 align="center">Solución pruebasUnitariasConDobles   👨🏻‍💻   </h1>
 
 Esta versión está realizada a partir de la solución facilitada por el profesor.
-Hemos añadido Test unitarios sin utilizar dobles.
-Utilizamos un patrón Builder de Game para facilitar la lectura, comprensión, construcción y realización de las pruebas.
+Hemos añadido Test unitarios con dobles.
+Utilizamos Mockito para realizar las pruebas.
 
 ## Authors
 
