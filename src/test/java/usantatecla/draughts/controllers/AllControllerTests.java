@@ -8,6 +8,6 @@ import org.junit.runners.Suite;
     PlayControllerTest.class,
     ResumeControllerTest.class,
     StartControllerTest.class } )
-public final class AllControllerTest {
+public final class AllControllerTests {
 }
 

@@ -20,12 +20,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>2.18.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
     <groupId>org.javatuples</groupId>
 	    <artifactId>javatuples</artifactId>
 	    <version>1.2</version>
@@ -35,7 +29,7 @@
        <artifactId>mockito-core</artifactId>
        <version>3.6.0</version>
        <scope>test</scope>
-    </dependency>         
+    </dependency>            
   </dependencies>
   <build>
     <plugins>

@@ -29,21 +29,28 @@ public class ResumeViewTest {
 
   @Test
   public void testGivenResumeViewWhenInteractThenReset() {
-    this.resumeView.interact(resumeController);
     when(this.yesNoDialog.read(Mockito.anyString())).thenReturn(true);
+    this.resumeView.interact(resumeController);
     verify(this.resumeController).reset();
   }
 
   @Test
   public void testGivenResumeViewWhenInteractThenNext() {
-    this.resumeView.interact(resumeController);
     when(this.yesNoDialog.read(Mockito.anyString())).thenReturn(false);
+    this.resumeView.interact(resumeController);
     verify(this.resumeController).next();
   }
 
   @Test(expected = AssertionError.class)
   public void testGivenResumeViewWhenInteractThenError() {
     this.resumeView.interact(null);
+  }
+
+  @Test
+  public void testWhenResumeViewThenOk() {
+    this.resumeView = new ResumeView();
+
+    verify(this.yesNoDialog);
   }
 
 }
