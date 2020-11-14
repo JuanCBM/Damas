@@ -95,7 +95,7 @@ public class GameViewTest {
   }
 
   @Test
-  public void testGivenNullWhenWriteThenNoError() {
+  public void testGivenNullPieceWhenWriteThenNoError() {
     int dimension = 8;
 
     when(this.playController.getDimension()).thenReturn(dimension);
