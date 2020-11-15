@@ -46,11 +46,4 @@ public class ResumeViewTest {
     this.resumeView.interact(null);
   }
 
-  @Test
-  public void testWhenResumeViewThenOk() {
-    this.resumeView = new ResumeView();
-
-    verify(this.yesNoDialog);
-  }
-
 }
