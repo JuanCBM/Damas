@@ -219,48 +219,51 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveSecondThenCOLLEAGUE_EATING(){
+  public void testGivenGameWhenMoveSecondThenColleagueEating(){
     Game game = this.gameBuilder.rows(
-        "        ",
-        "  n     ",
-        "   n    ",
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "        ").build();
+                                      "        ",
+                                      "  n     ",
+                                      "   n    ",
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "        ")
+                                .build();
     assertErrorMove(Error.COLLEAGUE_EATING,game,
         new Coordinate(1, 2),
         new Coordinate(3, 4));
   }
 
   @Test
-  public void testGivenGameWhenMoveSecondThenNOT_EMPTY_TARGET(){
+  public void testGivenGameWhenMoveSecondThenNotEmptyTarget(){
     Game game = this.gameBuilder.rows(
-        "        ",
-        "  n     ",
-        "   b    ",
-        "        ",
-        "   b    ",
-        "  b     ",
-        "        ",
-        "        ").build();
+                                      "        ",
+                                      "  n     ",
+                                      "   b    ",
+                                      "        ",
+                                      "   b    ",
+                                      "  b     ",
+                                      "        ",
+                                      "        ")
+                                .build();
     assertErrorMove(Error.NOT_EMPTY_TARGET,game,
         new Coordinate(1, 2),
         new Coordinate(3, 4),
         new Coordinate(5, 2));
   }
   @Test
-  public void testGivenGameWhenMoveSecondDownThenNOT_DIAGONAL(){
+  public void testGivenGameWhenMoveSecondDownThenNotDiagonal(){
     Game game = this.gameBuilder.rows(
-        "        ",
-        "        ",
-        "        ",
-        "    n   ",
-        "   b    ",
-        "        ",
-        "        ",
-        "        ").build();
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "    n   ",
+                                      "   b    ",
+                                      "        ",
+                                      "        ",
+                                      "        ")
+                                .build();
     assertErrorMove(Error.NOT_DIAGONAL,game,
         new Coordinate(3, 4),
         new Coordinate(5, 2),
@@ -268,16 +271,17 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveSecondRightThenNOT_DIAGONAL(){
+  public void testGivenGameWhenMoveSecondRightThenNotDiagonal(){
     Game game = this.gameBuilder.rows(
-        "        ",
-        "        ",
-        "        ",
-        "    n   ",
-        "   b    ",
-        "        ",
-        "        ",
-        "        ").build();
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "    n   ",
+                                      "   b    ",
+                                      "        ",
+                                      "        ",
+                                      "        ")
+                                .build();
     assertErrorMove(Error.NOT_DIAGONAL,game,
         new Coordinate(3, 4),
         new Coordinate(5, 2),
@@ -285,32 +289,34 @@ public class IncorrectMovesPawnGameTest {
   }
 
   @Test
-  public void testGivenGameWhenMoveSecondLeftThenNOT_DIAGONAL(){
+  public void testGivenGameWhenMoveSecondLeftThenNotDiagonal(){
     Game game = this.gameBuilder.rows(
-        "        ",
-        "        ",
-        "        ",
-        "    n   ",
-        "   b    ",
-        "        ",
-        "        ",
-        "        ").build();
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "    n   ",
+                                      "   b    ",
+                                      "        ",
+                                      "        ",
+                                      "        ")
+                                .build();
     assertErrorMove(Error.NOT_DIAGONAL,game,
         new Coordinate(4, 3),
         new Coordinate(2, 5),
         new Coordinate(1, 5));
   }
   @Test
-  public void testGivenGameWhenMoveSecondUpThenNOT_DIAGONAL(){
+  public void testGivenGameWhenMoveSecondUpThenNotDiagonal(){
     Game game = this.gameBuilder.rows(
-        "        ",
-        "        ",
-        "        ",
-        "        ",
-        "   n    ",
-        "  b     ",
-        "        ",
-        "        ").build();
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "        ",
+                                      "   n    ",
+                                      "  b     ",
+                                      "        ",
+                                      "        ")
+                                .build();
     assertErrorMove(Error.NOT_DIAGONAL,game,
         new Coordinate(5, 2),
         new Coordinate(3, 4),
