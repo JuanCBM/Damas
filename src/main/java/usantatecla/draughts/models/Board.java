@@ -59,6 +59,36 @@ class Board {
   }
 
   @Override
+  public String toString() {
+    String string = "";
+    string += this.toStringHorizontalNumbers();
+    for (int i = 0; i < Coordinate.getDimension(); i++)
+      string += this.toStringHorizontalPiecesWithNumbers(i);
+    string += this.toStringHorizontalNumbers();
+    return string;
+  }
+
+  private String toStringHorizontalNumbers() {
+    String string = " ";
+    for (int j = 0; j < Coordinate.getDimension(); j++)
+      string += j;
+    return string + "\n";
+  }
+
+  private String toStringHorizontalPiecesWithNumbers(int row) {
+    String string = " " + row;
+    for (int j = 0; j < Coordinate.getDimension(); j++) {
+      Piece piece = this.getPiece(new Coordinate(row, j));
+      if (piece == null)
+        string += " ";
+      else {
+        string += piece;
+      }
+    }
+    return string + row + "\n";
+  }
+
+  @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
