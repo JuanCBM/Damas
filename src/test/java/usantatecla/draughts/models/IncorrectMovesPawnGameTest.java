@@ -229,6 +229,7 @@ public class IncorrectMovesPawnGameTest {
                                       "        ",
                                       "        ",
                                       "        ")
+                                .color(Color.BLACK)
                                 .build();
     assertErrorMove(Error.COLLEAGUE_EATING,game,
         new Coordinate(1, 2),
@@ -246,6 +247,7 @@ public class IncorrectMovesPawnGameTest {
                                       "  b     ",
                                       "        ",
                                       "        ")
+                                .color(Color.BLACK)
                                 .build();
     assertErrorMove(Error.NOT_EMPTY_TARGET,game,
         new Coordinate(1, 2),
@@ -263,6 +265,7 @@ public class IncorrectMovesPawnGameTest {
                                       "        ",
                                       "        ",
                                       "        ")
+                                .color(Color.BLACK)
                                 .build();
     assertErrorMove(Error.NOT_DIAGONAL,game,
         new Coordinate(3, 4),
@@ -281,6 +284,7 @@ public class IncorrectMovesPawnGameTest {
                                       "        ",
                                       "        ",
                                       "        ")
+                                .color(Color.BLACK)
                                 .build();
     assertErrorMove(Error.NOT_DIAGONAL,game,
         new Coordinate(3, 4),

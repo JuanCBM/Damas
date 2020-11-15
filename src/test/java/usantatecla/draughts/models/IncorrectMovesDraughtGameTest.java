@@ -198,6 +198,7 @@ public class IncorrectMovesDraughtGameTest {
                                       "        ",
                                       "        ",
                                       "        ")
+                                .color(Color.BLACK)
                                 .build();
     assertErrorMove(Error.NOT_DIAGONAL,game,
         new Coordinate(3, 4),
