@@ -11,7 +11,6 @@ import org.junit.runners.Suite.SuiteClasses;
   PlayViewTest.class,
   ResumeViewTest.class,
   StartViewTest.class,
-  SubViewTest.class,
   ViewTest.class})
 //@formatter:on
 public class AllViewTests {

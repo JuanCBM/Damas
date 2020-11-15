@@ -1,15 +1,12 @@
 package usantatecla.draughts.views;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import usantatecla.draughts.controllers.PlayController;
 import usantatecla.draughts.models.Color;
@@ -28,28 +25,35 @@ public class PlayViewTest {
   @InjectMocks
   PlayView playView;
 
-
   @Test
-  public void testInteract(){
+  public void testGivenPlayControllerWhenInteractThenNoError() {
     when(playController.getColor()).thenReturn(Color.BLACK);
-    when(console.readString("Mueven las negras: ")).thenReturn("32.41\n");
+    when(console.readString(Mockito.anyString())).thenReturn("32.41\n");
+
     playView.interact(playController);
-    verify(playController).move(new Coordinate(2,1), new Coordinate(3, 0));
+    verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
   }
 
   @Test
-  public void testInteract2(){
+  public void testGivenPlayControllerWhenInteractThenBadFormat() {
     when(playController.getColor()).thenReturn(Color.BLACK);
-    when(console.readString("Mueven las negras: ")).thenReturn("09.41\n").thenReturn("32.41");
+    when(console.readString(Mockito.anyString())).thenReturn("09.41\n").thenReturn("32.41");
     playView.interact(playController);
-    verify(playController).move(new Coordinate(2,1), new Coordinate(3, 0));
+    verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
   }
 
   @Test
-  public void testGivenPlayViewWhenPlayerGiveUpThenNextState(){
+  public void testGivenPlayControllerWhenInteractThenCancelFormat() {
     when(playController.getColor()).thenReturn(Color.WHITE);
-    when(console.readString("Mueven las blancas: ")).thenReturn("-1");
+    when(console.readString(Mockito.anyString())).thenReturn("-1");
     playView.interact(playController);
     verify(playController).cancel();
   }
+
+
+  @Test(expected = AssertionError.class)
+  public void testGivenNullPlayControllerWhenInteractThenError() {
+    playView.interact(null);
+    verify(playController).cancel();
   }
+}
