@@ -70,17 +70,85 @@ public class PlayViewTest {
     verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
   }
 
-  @Test
-  public void testGivenPlayControllerWhenInteractThenCancelFormat() {
-    when(playController.getColor()).thenReturn(Color.WHITE);
-    when(console.readString(Mockito.anyString())).thenReturn("-1");
-    playView.interact(playController);
-    verify(playController).cancel();
-  }
-
   @Test(expected = AssertionError.class)
   public void testGivenNullPlayControllerWhenInteractThenError() {
     playView.interact(null);
     verify(playController).cancel();
+  }
+
+  @Test
+  public void testGivenPlayViewWhenInteractThenCancel() {
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("-1").thenReturn("32.41");
+    playView.interact(playController);
+    verify(playController).cancel();
+  }
+
+  @Test
+  public void testGivenPlayViewWhenInteractWithEmptyThenError() {
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("").thenReturn("32.41");
+    playView.interact(playController);
+    verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
+  }
+
+  @Test
+  public void testGivenPlayViewWhenInteractWithNotPointThenError() {
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("87,68").thenReturn("32.41");
+    playView.interact(playController);
+    verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
+  }
+
+
+  @Test
+  public void testGivenPlayViewWhenInteractWithBadFormatThenError() {
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("a3.42").thenReturn("32.41");
+    playView.interact(playController);
+    verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
+  }
+
+  @Test
+  public void testGivenPlayViewWhenInteractWithBadRangeThenError() {
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("93.49").thenReturn("32.41");
+    playView.interact(playController);
+    verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
+  }
+
+  @Test
+  public void testGivenPlayViewWhenInteractWithNegativeThenError() {
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("43.-34").thenReturn("32.41");
+    playView.interact(playController);
+    verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
+  }
+
+  @Test
+  public void testGivenPlayViewWhenInteractWithSecondNegativeThenError() {
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("4-3.34").thenReturn("32.41");
+    playView.interact(playController);
+    verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
+  }
+
+  @Test
+  public void testGivenPlayViewWhenInteractWithTwoCoordiantesThenOk() {
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("32.41");
+    playView.interact(playController);
+    verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
+  }
+
+  @Test
+  public void testGivenPlayViewWhenInteractWithThirdCoordiantesThenOk() {
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("23.32.41");
+    playView.interact(playController);
+    verify(playController).move(
+        new Coordinate(1, 2),
+        new Coordinate(2, 1),
+        new Coordinate(3, 0));
   }
 }
