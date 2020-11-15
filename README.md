@@ -20,6 +20,7 @@
 
 > Versiones de la práctica Mastermind
 - [x] [pruebasUnitariasSinDobles](https://github.com/JuanCBM/Damas/tree/pruebasUnitariasSinDobles) 
-- [ ] [pruebasUnitariasConDobles](https://github.com/mahuerta/MasterMind/tree/pruebasUnitariasConDobles) 
+
+- [x] [pruebasUnitariasConDobles](https://github.com/JuanCBM/Damas/tree/pruebasUnitariasConDobles) 
 
 - [ ] Next Implementations
