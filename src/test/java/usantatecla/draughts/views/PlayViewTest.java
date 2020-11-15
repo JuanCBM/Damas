@@ -34,7 +34,15 @@ public class PlayViewTest {
     when(playController.getColor()).thenReturn(Color.BLACK);
     when(console.readString("Mueven las negras: ")).thenReturn("32.41\n");
     playView.interact(playController);
-    verify(playController).move(new Coordinate(3,2), new Coordinate(4, 1));
+    verify(playController).move(new Coordinate(2,1), new Coordinate(3, 0));
+  }
+
+  @Test
+  public void testInteract2(){
+    when(playController.getColor()).thenReturn(Color.BLACK);
+    when(console.readString("Mueven las negras: ")).thenReturn("09.41\n").thenReturn("32.41");
+    playView.interact(playController);
+    verify(playController).move(new Coordinate(2,1), new Coordinate(3, 0));
   }
 
   @Test
@@ -44,13 +52,4 @@ public class PlayViewTest {
     playView.interact(playController);
     verify(playController).cancel();
   }
-
-  @Test
-  public void testGivenPlayViewWherGameIsOverThenNextState(){
-    when(playController.getColor()).thenReturn(Color.WHITE);
-    when(playController.isBlocked()).thenReturn(true);
-    playView.interact(playController);
-    //verify(playController).();
   }
-
-}
