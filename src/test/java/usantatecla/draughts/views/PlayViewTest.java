@@ -49,7 +49,7 @@ public class PlayViewTest {
   }
 
   @Test
-  public void testGivenPlayControllerWhenInteractThenIsNotDiagonal() {
+  public void testGivenPlayControllerWhenInteractThenIsNotDiagonalThenOk() {
     when(playController.getColor()).thenReturn(Color.BLACK);
     when(console.readString(Mockito.anyString())).thenReturn("32.41").thenReturn("21.31");
     when(playController.move(Mockito.any(), Mockito.any())).thenReturn(Error.NOT_DIAGONAL)
@@ -60,9 +60,7 @@ public class PlayViewTest {
 
     verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
     verify(playController).move(new Coordinate(1, 0), new Coordinate(2, 0));
-
   }
-
 
   @Test
   public void testGivenPlayControllerWhenInteractThenBadFormat() {
@@ -79,7 +77,6 @@ public class PlayViewTest {
     playView.interact(playController);
     verify(playController).cancel();
   }
-
 
   @Test(expected = AssertionError.class)
   public void testGivenNullPlayControllerWhenInteractThenError() {
