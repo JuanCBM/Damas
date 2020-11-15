@@ -29,7 +29,7 @@ public class PlayViewTest {
   PlayView playView;
 
 
-  @Test
+  @Test(expected = StringIndexOutOfBoundsException.class)
   public void testInteract(){
     when(playController.getColor()).thenReturn(Color.BLACK);
     when(console.readString("Mueven las negras: ")).thenReturn("32.41\n");
