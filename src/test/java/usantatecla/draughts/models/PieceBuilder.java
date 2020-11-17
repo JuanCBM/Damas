@@ -1,32 +1,17 @@
 package usantatecla.draughts.models;
 
-public class PieceBuilder {
+public class PieceBuilder extends DraughtUtils {
 
-  private String type;
-  private Color color;
+  private Character piece;
 
-  public PieceBuilder() {
-    this.type = "p";
-    this.color = Color.WHITE;
-  }
-
-  public PieceBuilder color(Color color) {
-    this.color = color;
-    return this;
-  }
-
-  public PieceBuilder piece(String type) {
-    this.type = type;
+  public PieceBuilder piece(Character piece) {
+    this.piece = piece;
     return this;
   }
 
   public Piece build() {
-    assert (this.color != null);
-    if (this.type == "p") {
-      return new Pawn(this.color);
-    } else if (this.type == "d") {
-      return new Draught(this.color);
-    }
-    return null;
+    assert (piecesMap.get(this.piece) != null);
+
+    return piecesMap.get(this.piece);
   }
 }

@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import usantatecla.draughts.controllers.PlayController;
-import usantatecla.draughts.models.Color;
 import usantatecla.draughts.models.PieceBuilder;
 import usantatecla.draughts.utils.Console;
 
@@ -71,8 +70,7 @@ public class GameViewTest {
     int dimension = 8;
 
     when(this.playController.getDimension()).thenReturn(dimension);
-    when(this.playController.getPiece(Mockito.any()))
-        .thenReturn(pieceBuilder.piece("p").color(Color.WHITE).build());
+    when(this.playController.getPiece(Mockito.any())).thenReturn(pieceBuilder.piece('b').build());
 
     doNothing().when(this.console).write(Mockito.anyString());
 
@@ -85,8 +83,7 @@ public class GameViewTest {
     int dimension = 8;
 
     when(this.playController.getDimension()).thenReturn(dimension);
-    when(this.playController.getPiece(Mockito.any()))
-        .thenReturn(pieceBuilder.piece("d").color(Color.WHITE).build());
+    when(this.playController.getPiece(Mockito.any())).thenReturn(pieceBuilder.piece('B').build());
 
     doNothing().when(this.console).write(Mockito.anyString());
 

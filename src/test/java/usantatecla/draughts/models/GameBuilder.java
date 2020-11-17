@@ -1,12 +1,10 @@
 package usantatecla.draughts.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 
-public class GameBuilder {
+public class GameBuilder extends DraughtUtils {
 
   private final List<String> strings;
   private Color color;
@@ -26,16 +24,6 @@ public class GameBuilder {
                                           " b b b b", 
                                           "b b b b "};
   //@formatter:on
-
-  private final Map<Character, Piece> piecesMap = new HashMap<Character, Piece>() {
-    private static final long serialVersionUID = 1L;
-    {
-      put('b', new Pawn(Color.WHITE));
-      put('B', new Draught(Color.WHITE));
-      put('n', new Pawn(Color.BLACK));
-      put('N', new Draught(Color.BLACK));
-    }
-  };
 
   public Game build() {
     if (this.strings.size() == 0)

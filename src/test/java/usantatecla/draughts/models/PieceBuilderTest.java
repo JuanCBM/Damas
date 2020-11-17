@@ -1,7 +1,9 @@
 package usantatecla.draughts.models;
 
 import static org.junit.Assert.assertEquals;
-
+import java.util.Arrays;
+import java.util.List;
+import org.javatuples.Triplet;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,31 +18,27 @@ public class PieceBuilderTest {
 
   @Test(expected = AssertionError.class)
   public void testGivenPieceBuilderWhenNullColorThenError() {
-  this.pieceBuilder.color(null).build();
+    this.pieceBuilder.piece(null).build();
   }
 
   @Test
-  public void testGivenPieceBuilderWhenNullTypeThenNullPiece() {
-    assertEquals(null,this.pieceBuilder.piece(null).build());
+  public void testGivenPieceBuilderWhenBlackDraughtThenOK() {
+    // @formatter:off
+    List<Triplet<Character, Color, Class<?>>> characterColorClass = Arrays.asList(
+        new Triplet<>('N', Color.BLACK, Draught.class), 
+        new Triplet<>('n', Color.BLACK, Pawn.class),
+        new Triplet<>('B', Color.WHITE, Draught.class),
+        new Triplet<>('b', Color.WHITE, Pawn.class));    
+    // @formatter:on
+
+    for (Triplet<Character, Color, Class<?>> triplet : characterColorClass) {
+      Piece piece = this.pieceBuilder.piece(triplet.getValue0()).build();
+
+      assertEquals(triplet.getValue1(), piece.getColor());
+      assertEquals(triplet.getValue2(), piece.getClass());
+
+    }
+
   }
 
-  @Test
-  public void testGivenPieceBuilderWhenPawnTypeThenOK() {
-    assertEquals(new Pawn(Color.WHITE),this.pieceBuilder.piece("p").build());
-  }
-
-  @Test
-  public void testGivenPieceBuilderWhenDraughtTypeThenOK() {
-    assertEquals(new Draught(Color.WHITE),this.pieceBuilder.piece("d").build());
-  }
-
-  @Test
-  public void testGivenPieceBuilderWhenWhiteColorThenOK() {
-    assertEquals(Color.WHITE,this.pieceBuilder.color(Color.WHITE).build().getColor());
-  }
-
-  @Test
-  public void testGivenPieceBuilderWhenBlackColorThenOK() {
-    assertEquals(Color.BLACK,this.pieceBuilder.color(Color.BLACK).build().getColor());
-  }
-  }
+}
