@@ -1,6 +1,6 @@
 package usantatecla.draughts.models;
 
-public enum ColorPalette implements Color {
+public enum PaletteColor implements Color {
   WHITE, BLACK;
 
   final int[] LIMITS = new int[] {5, 2};
@@ -8,9 +8,9 @@ public enum ColorPalette implements Color {
   @Override
   public Color getInitialColor(final Coordinate coordinate) {
     if (coordinate.isBlack())
-      for (ColorPalette colorPalette : ColorPalette.values())
-        if (colorPalette.isInitialRow(coordinate.getRow()))
-          return colorPalette;
+      for (PaletteColor paletteColor : PaletteColor.values())
+        if (paletteColor.isInitialRow(coordinate.getRow()))
+          return paletteColor;
     return NullColor.NULL;
   }
 

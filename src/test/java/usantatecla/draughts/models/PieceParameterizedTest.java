@@ -89,23 +89,23 @@ public class PieceParameterizedTest {
 		assertEquals(expectedIsCorrectMovement, this.piece.isCorrectMovement(betweenDiagonalPieces, pair, coordinatesCorrectMovement));
 	}
 	
-	private static Draught draught(ColorPalette colorPalette) {
-		return new Draught(colorPalette);
+	private static Draught draught(PaletteColor paletteColor) {
+		return new Draught(paletteColor);
 	}
 	
-	private static Pawn pawn(ColorPalette colorPalette) {
-		return new Pawn(colorPalette);
+	private static Pawn pawn(PaletteColor paletteColor) {
+		return new Pawn(paletteColor);
 	}
 	
 	private static Coordinate coordinate(int row, int column) {
 		return new Coordinate(row, column);
 	}
 	
-	private static ColorPalette white() {
-		return ColorPalette.WHITE;
+	private static PaletteColor white() {
+		return PaletteColor.WHITE;
 	}
 	
-	private static ColorPalette black() {
-		return ColorPalette.BLACK;
+	private static PaletteColor black() {
+		return PaletteColor.BLACK;
 	}
 }

@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import usantatecla.draughts.controllers.PlayController;
-import usantatecla.draughts.models.ColorPalette;
+import usantatecla.draughts.models.PaletteColor;
 import usantatecla.draughts.utils.Console;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -29,7 +29,7 @@ public class PlayViewTest {
     @Before
     public void before() {
         initMocks(this);
-        doReturn(ColorPalette.WHITE).when(playController).getColor();
+        doReturn(PaletteColor.WHITE).when(playController).getColor();
     }
 
     @Test

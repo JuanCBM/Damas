@@ -16,10 +16,10 @@ public class TurnParameterizedTest {
 	
 	private int turnChanges;
 	
-	private ColorPalette expectedTurn;
-	private ColorPalette expectedOppositeTurn;
+	private PaletteColor expectedTurn;
+	private PaletteColor expectedOppositeTurn;
 	
-   public TurnParameterizedTest(int turnChanges, ColorPalette expectedTurn, ColorPalette expectedOppositeTurn) {
+   public TurnParameterizedTest(int turnChanges, PaletteColor expectedTurn, PaletteColor expectedOppositeTurn) {
 	      this.turnChanges = turnChanges;
 	      this.expectedTurn = expectedTurn;
 	      this.expectedOppositeTurn = expectedOppositeTurn;
@@ -28,9 +28,9 @@ public class TurnParameterizedTest {
 	@Parameters
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] { 
-			{ 0, ColorPalette.WHITE, ColorPalette.BLACK },
-			{ 2, ColorPalette.WHITE, ColorPalette.BLACK },
-			{ 3, ColorPalette.BLACK, ColorPalette.WHITE}, 
+			{ 0, PaletteColor.WHITE, PaletteColor.BLACK },
+			{ 2, PaletteColor.WHITE, PaletteColor.BLACK },
+			{ 3, PaletteColor.BLACK, PaletteColor.WHITE}, 
 		});
 	}
 	

@@ -16,11 +16,11 @@ public class GameBuilder {
 			String row = rows[i];
 			assert row.length() == Coordinate.getDimension();
 			for (int j = 0; j < row.length(); j++) {
-				ColorPalette colorPalette = colorPalette(row.charAt(j));
-				if (colorPalette != null) {
-					Piece piece = new Pawn(colorPalette);
+				PaletteColor paletteColor = paletteColor(row.charAt(j));
+				if (paletteColor != null) {
+					Piece piece = new Pawn(paletteColor);
 					if (Character.isUpperCase(row.charAt(j))) {
-						piece = new Draught(colorPalette);
+						piece = new Draught(paletteColor);
 					}
 					this.board.put(new Coordinate(i, j), piece);
 				}
@@ -29,14 +29,14 @@ public class GameBuilder {
 		return this;
 	}
 	
-	private ColorPalette colorPalette(char color) {
+	private PaletteColor paletteColor(char color) {
 		switch(color) {
 		case 'b':
 		case 'B':
-			return ColorPalette.WHITE;
+			return PaletteColor.WHITE;
 		case 'n':
 		case 'N':
-			return ColorPalette.BLACK;
+			return PaletteColor.BLACK;
 		default:
 			return null;
 		}

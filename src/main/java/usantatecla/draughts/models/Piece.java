@@ -27,15 +27,15 @@ public abstract class Piece {
       Coordinate... coordinates);
 
   boolean isLimit(Coordinate coordinate) {
-    return coordinate.isFirst() && this.getColor() == ColorPalette.WHITE
-        || coordinate.isLast() && this.getColor() == ColorPalette.BLACK;
+    return coordinate.isFirst() && this.getColor() == PaletteColor.WHITE
+        || coordinate.isLast() && this.getColor() == PaletteColor.BLACK;
   }
 
   boolean isAdvanced(Coordinate origin, Coordinate target) {
     assert origin != null;
     assert target != null;
     int difference = origin.getRow() - target.getRow();
-    if (color == ColorPalette.WHITE)
+    if (color == PaletteColor.WHITE)
       return difference > 0;
     return difference < 0;
   }

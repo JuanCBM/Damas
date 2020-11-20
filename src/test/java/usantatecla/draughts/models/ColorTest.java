@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ColorTest {
-  ColorPalette white = ColorPalette.WHITE;
-  ColorPalette black = ColorPalette.BLACK;
+  PaletteColor white = PaletteColor.WHITE;
+  PaletteColor black = PaletteColor.BLACK;
 
   @Test
   public void testIsInitialRow() {

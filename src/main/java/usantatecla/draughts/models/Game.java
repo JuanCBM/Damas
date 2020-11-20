@@ -30,7 +30,7 @@ public class Game {
         this.board.put(coordinate, piece);
 
       }
-    if (this.turn.getColor() != ColorPalette.WHITE)
+    if (this.turn.getColor() != PaletteColor.WHITE)
       this.turn.change();
   }
 
@@ -158,11 +158,11 @@ public class Game {
     return this.board.getColor(coordinate);
   }
 
-  public ColorPalette getTurnColor() {
+  public PaletteColor getTurnColor() {
     return this.turn.getColor();
   }
 
-  private ColorPalette getOppositeTurnColor() {
+  private PaletteColor getOppositeTurnColor() {
     return this.turn.getOppositeColor();
   }
 

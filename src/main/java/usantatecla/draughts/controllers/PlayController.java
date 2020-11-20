@@ -1,6 +1,6 @@
 package usantatecla.draughts.controllers;
 
-import usantatecla.draughts.models.ColorPalette;
+import usantatecla.draughts.models.PaletteColor;
 import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.State;
 import usantatecla.draughts.models.Error;
@@ -25,7 +25,7 @@ public class PlayController extends InteractorController {
 		this.cancelController.cancel();
 	}
 
-	public ColorPalette getColor() {
+	public PaletteColor getColor() {
 		return this.game.getTurnColor();
 	}
 
