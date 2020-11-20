@@ -57,7 +57,7 @@ class Board {
         return betweenDiagonalPieces;
     }
 
-    Color getColor(Coordinate coordinate) {
+    PaletteColor getColor(Coordinate coordinate) {
         final Piece piece = this.getPiece(coordinate);
         if (piece == null)
             return null;

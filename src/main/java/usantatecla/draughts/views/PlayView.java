@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import usantatecla.draughts.controllers.PlayController;
 import usantatecla.draughts.models.Error;
-import usantatecla.draughts.models.Color;
+import usantatecla.draughts.models.PaletteColor;
 import usantatecla.draughts.models.Coordinate;
 
 class PlayView extends SubView {
@@ -44,7 +44,7 @@ class PlayView extends SubView {
         } while (error != null);
     }
 
-    private String read(Color color) {
+    private String read(PaletteColor color) {
         final String titleColor = PlayView.PROMPT.replace(PlayView.COLOR_PARAM ,PlayView.COLOR_VALUES[color.ordinal()]);
         return this.console.readString(titleColor);
     }

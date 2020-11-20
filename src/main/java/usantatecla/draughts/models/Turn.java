@@ -2,22 +2,22 @@ package usantatecla.draughts.models;
 
 class Turn {
 
-  private Color color;
+  private PaletteColor color;
 
   Turn() {
-    this.color = Color.WHITE;
+    this.color = PaletteColor.WHITE;
   }
 
   void change() {
     this.color = this.getOppositeColor();
   }
 
-  Color getColor() {
+  PaletteColor getColor() {
     return this.color;
   }
 
-  Color getOppositeColor() {
-    return Color.values()[(this.color.ordinal() + 1) % 2];
+  PaletteColor getOppositeColor() {
+    return PaletteColor.values()[(this.color.ordinal() + 1) % 2];
   }
 
   @Override

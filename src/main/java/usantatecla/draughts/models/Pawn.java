@@ -5,7 +5,7 @@ public class Pawn extends Piece {
     private static char[] CHARACTERS = {'b', 'n'};
     private static final int MAX_DISTANCE = 2;
 
-    public Pawn(Color color) {
+    public Pawn(PaletteColor color) {
         super(color);
     }
 

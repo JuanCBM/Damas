@@ -2,7 +2,7 @@ package usantatecla.draughts.models;
 
 public class Draught extends Piece {
 
-  public Draught(Color color) {
+  public Draught(PaletteColor color) {
     super(color);
   }
 

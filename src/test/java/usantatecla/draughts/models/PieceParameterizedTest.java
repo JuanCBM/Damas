@@ -89,11 +89,11 @@ public class PieceParameterizedTest {
 		assertEquals(expectedIsCorrectMovement, this.piece.isCorrectMovement(betweenDiagonalPieces, pair, coordinatesCorrectMovement));
 	}
 	
-	private static Draught draught(Color color) {
+	private static Draught draught(PaletteColor color) {
 		return new Draught(color);
 	}
 	
-	private static Pawn pawn(Color color) {
+	private static Pawn pawn(PaletteColor color) {
 		return new Pawn(color);
 	}
 	
@@ -101,11 +101,11 @@ public class PieceParameterizedTest {
 		return new Coordinate(row, column);
 	}
 	
-	private static Color white() {
-		return Color.WHITE;
+	private static PaletteColor white() {
+		return PaletteColor.WHITE;
 	}
 	
-	private static Color black() {
-		return Color.BLACK;
+	private static PaletteColor black() {
+		return PaletteColor.BLACK;
 	}
 }

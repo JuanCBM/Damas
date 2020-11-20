@@ -4,10 +4,10 @@ import java.util.List;
 
 public abstract class Piece {
 
-	protected Color color;
+	protected PaletteColor color;
 	private static String[] CODES = {"b", "n"};
 
-	Piece(Color color) {
+	Piece(PaletteColor color) {
 		assert color != null;
 		this.color = color;
 	}
@@ -26,20 +26,20 @@ public abstract class Piece {
 	abstract Error isCorrectDiagonalMovement(int amountBetweenDiagonalPieces, int pair, Coordinate... coordinates);
 
 	boolean isLimit(Coordinate coordinate) {
-		return coordinate.isFirst() && this.getColor() == Color.WHITE
-				|| coordinate.isLast() && this.getColor() == Color.BLACK;
+		return coordinate.isFirst() && this.getColor() == PaletteColor.WHITE
+				|| coordinate.isLast() && this.getColor() == PaletteColor.BLACK;
 	}
 
 	boolean isAdvanced(Coordinate origin, Coordinate target) {
 		assert origin != null;
 		assert target != null;
 		int difference = origin.getRow() - target.getRow();
-		if (color == Color.WHITE)
+		if (color == PaletteColor.WHITE)
 			return difference > 0;
 		return difference < 0;
 	}
 
-	public Color getColor() {
+	public PaletteColor getColor() {
 		return this.color;
 	}
 
