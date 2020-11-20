@@ -23,4 +23,7 @@
 
 - [x] [pruebasUnitariasConDobles](https://github.com/JuanCBM/Damas/tree/pruebasUnitariasConDobles) 
 
+- [x] [refactor](https://github.com/JuanCBM/Damas/tree/refactor) 
+
+
 - [ ] Next Implementations
