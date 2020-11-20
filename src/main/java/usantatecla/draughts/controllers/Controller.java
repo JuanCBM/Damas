@@ -1,6 +1,6 @@
 package usantatecla.draughts.controllers;
 
-import usantatecla.draughts.models.ColorGlobal;
+import usantatecla.draughts.models.Color;
 import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Game;
 import usantatecla.draughts.models.State;
@@ -17,7 +17,7 @@ class Controller {
     this.state = state;
   }
 
-  public ColorGlobal getColor(Coordinate coordinate) {
+  public Color getColor(Coordinate coordinate) {
     assert coordinate != null;
     return this.game.getColor(coordinate);
   }

@@ -1,11 +1,16 @@
 package usantatecla.draughts.models;
 
-public enum NullColor implements ColorGlobal {
+public enum NullColor implements Color {
   NULL;
 
   @Override
-  public ColorGlobal getInitialColor(Coordinate coordinate) {
+  public Color getInitialColor(Coordinate coordinate) {
     return NULL;
+  }
+
+  @Override
+  public boolean isNull() {
+    return true;
   }
 
 }

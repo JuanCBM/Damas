@@ -4,11 +4,11 @@ import java.util.List;
 
 public abstract class Piece {
 
-  protected ColorGlobal color;
+  protected Color color;
   private static String[] CODES = {"b", "n"};
 
-  Piece(ColorGlobal color) {
-    assert color != null;
+  Piece(Color color) {
+    assert (!color.isNull());
     this.color = color;
   }
 
@@ -27,20 +27,20 @@ public abstract class Piece {
       Coordinate... coordinates);
 
   boolean isLimit(Coordinate coordinate) {
-    return coordinate.isFirst() && this.getColor() == Color.WHITE
-        || coordinate.isLast() && this.getColor() == Color.BLACK;
+    return coordinate.isFirst() && this.getColor() == ColorPalette.WHITE
+        || coordinate.isLast() && this.getColor() == ColorPalette.BLACK;
   }
 
   boolean isAdvanced(Coordinate origin, Coordinate target) {
     assert origin != null;
     assert target != null;
     int difference = origin.getRow() - target.getRow();
-    if (color == Color.WHITE)
+    if (color == ColorPalette.WHITE)
       return difference > 0;
     return difference < 0;
   }
 
-  public ColorGlobal getColor() {
+  public Color getColor() {
     return this.color;
   }
 

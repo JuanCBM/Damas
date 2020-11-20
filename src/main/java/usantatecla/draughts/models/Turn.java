@@ -2,34 +2,34 @@ package usantatecla.draughts.models;
 
 class Turn {
 
-  private Color color;
+  private ColorPalette colorPalette;
 
   Turn() {
-    this.color = Color.WHITE;
+    this.colorPalette = ColorPalette.WHITE;
   }
 
   void change() {
-    this.color = this.getOppositeColor();
+    this.colorPalette = this.getOppositeColor();
   }
 
-  Color getColor() {
-    return this.color;
+  ColorPalette getColor() {
+    return this.colorPalette;
   }
 
-  Color getOppositeColor() {
-    return Color.values()[(this.color.ordinal() + 1) % 2];
+  ColorPalette getOppositeColor() {
+    return ColorPalette.values()[(this.colorPalette.ordinal() + 1) % 2];
   }
 
   @Override
   public String toString() {
-    return this.color.name();
+    return this.colorPalette.name();
   }
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((color == null) ? 0 : color.hashCode());
+    result = prime * result + ((colorPalette == null) ? 0 : colorPalette.hashCode());
     return result;
   }
 
@@ -42,7 +42,7 @@ class Turn {
     if (getClass() != obj.getClass())
       return false;
     Turn other = (Turn) obj;
-    if (color != other.color)
+    if (colorPalette != other.colorPalette)
       return false;
     return true;
   }
