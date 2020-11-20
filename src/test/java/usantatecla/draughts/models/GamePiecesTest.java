@@ -22,9 +22,9 @@ public class GamePiecesTest {
 				"        ",
 				"n       ").build();
 		this.game.reset();
-		assertEquals(color(coordinate(7, 0)), PaletteColor.WHITE);
-		assertNotEquals(color(coordinate(3, 7)), PaletteColor.BLACK);
-		assertNotEquals(color(coordinate(3, 7)), PaletteColor.WHITE);
+		assertEquals(color(coordinate(7, 0)), Color.WHITE);
+		assertNotEquals(color(coordinate(3, 7)), Color.BLACK);
+		assertNotEquals(color(coordinate(3, 7)), Color.WHITE);
 	}
 	
 	@Test
@@ -39,9 +39,9 @@ public class GamePiecesTest {
 				"        ",
 				"b       ").build();
 		this.game.cancel();
-		assertNotEquals(color(coordinate(3, 7)), PaletteColor.BLACK);
-		assertNotEquals(color(coordinate(3, 7)), PaletteColor.WHITE);
-		assertEquals(this.game.getTurnColor(), PaletteColor.BLACK);
+		assertNotEquals(color(coordinate(3, 7)), Color.BLACK);
+		assertNotEquals(color(coordinate(3, 7)), Color.WHITE);
+		assertEquals(this.game.getTurnColor(), Color.BLACK);
 	}
 	
 	@Test
@@ -62,7 +62,7 @@ public class GamePiecesTest {
 		return new Coordinate(row, column);
 	}
 	
-	private PaletteColor color(Coordinate coordinate) {
+	private Color color(Coordinate coordinate) {
 		return this.game.getColor(coordinate);
 	}
 	

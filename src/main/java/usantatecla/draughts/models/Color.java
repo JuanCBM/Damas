@@ -1,6 +1,6 @@
 package usantatecla.draughts.models;
 
-public enum PaletteColor {
+public enum Color {
     WHITE,
     BLACK;
 
@@ -16,9 +16,9 @@ public enum PaletteColor {
         return false;
     }
 
-    static PaletteColor getInitialColor(final Coordinate coordinate) {
+    static Color getInitialColor(final Coordinate coordinate) {
         if (coordinate.isBlack())
-            for(PaletteColor color : PaletteColor.values())
+            for(Color color : Color.values())
                 if (color.isInitialRow(coordinate.getRow()))
                     return color;
         return null;

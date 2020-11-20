@@ -22,13 +22,13 @@ public class Game {
 		for (int i = 0; i < Coordinate.getDimension(); i++)
 			for (int j = 0; j < Coordinate.getDimension(); j++) {
 				Coordinate coordinate = new Coordinate(i, j);
-				PaletteColor color = PaletteColor.getInitialColor(coordinate);
+				Color color = Color.getInitialColor(coordinate);
 				Piece piece = null;
 				if (color != null)
 					piece = new Pawn(color);
 				this.board.put(coordinate, piece);
 			}
-		if (this.turn.getColor() != PaletteColor.WHITE)
+		if (this.turn.getColor() != Color.WHITE)
 			this.turn.change();
 	}
 
@@ -76,7 +76,7 @@ public class Game {
 		}
 		this.board.move(coordinates[pair], coordinates[pair + 1]);
 		if (this.board.getPiece(coordinates[pair + 1]).isLimit(coordinates[pair + 1])) {
-			PaletteColor color = this.board.getColor(coordinates[pair + 1]);
+			Color color = this.board.getColor(coordinates[pair + 1]);
 			this.board.remove(coordinates[pair + 1]);
 			this.board.put(coordinates[pair + 1], new Draught(color));
 		}
@@ -146,16 +146,16 @@ public class Game {
 		this.turn.change();
 	}
 
-	public PaletteColor getColor(Coordinate coordinate) {
+	public Color getColor(Coordinate coordinate) {
 		assert coordinate != null;
 		return this.board.getColor(coordinate);
 	}
 
-	public PaletteColor getTurnColor() {
+	public Color getTurnColor() {
 		return this.turn.getColor();
 	}
 
-	private PaletteColor getOppositeTurnColor() {
+	private Color getOppositeTurnColor() {
 		return this.turn.getOppositeColor();
 	}
 

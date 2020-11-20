@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ColorTest {
-    PaletteColor white = PaletteColor.WHITE;
-    PaletteColor black = PaletteColor.BLACK;
+    Color white = Color.WHITE;
+    Color black = Color.BLACK;
 
     @Test
     public void testIsInitialRow() {
@@ -19,20 +19,20 @@ public class ColorTest {
 
     @Test
     public void testGetInitialColorWhenCoordinateIsOnInitialRowsShouldReturnColor() {
-        Assert.assertEquals(black, PaletteColor.getInitialColor(coordinate(0, 1)));
-        Assert.assertEquals(white, PaletteColor.getInitialColor(coordinate(5, 0)));
+        Assert.assertEquals(black, Color.getInitialColor(coordinate(0, 1)));
+        Assert.assertEquals(white, Color.getInitialColor(coordinate(5, 0)));
     }
 
     @Test
     public void testGetInitialColorWhenCoordinateIsWhiteShouldReturnNull() {
-        Assert.assertNull(PaletteColor.getInitialColor(coordinate(0, 0)));
-        Assert.assertNull(PaletteColor.getInitialColor(coordinate(2, 2)));
+        Assert.assertNull(Color.getInitialColor(coordinate(0, 0)));
+        Assert.assertNull(Color.getInitialColor(coordinate(2, 2)));
     }
 
     @Test
     public void testGetInitialColorWhenCoordinateDoesntHavePieceShouldReturnNull() {
-        Assert.assertNull(PaletteColor.getInitialColor(coordinate(3, 3)));
-        Assert.assertNull(PaletteColor.getInitialColor(coordinate(4, 4)));
+        Assert.assertNull(Color.getInitialColor(coordinate(3, 3)));
+        Assert.assertNull(Color.getInitialColor(coordinate(4, 4)));
     }
 
     private static Coordinate coordinate(int row, int column) {

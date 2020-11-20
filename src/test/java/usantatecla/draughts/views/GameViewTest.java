@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import usantatecla.draughts.controllers.InteractorController;
-import usantatecla.draughts.models.PaletteColor;
+import usantatecla.draughts.models.Color;
 import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Draught;
 import usantatecla.draughts.models.Pawn;
@@ -22,8 +22,8 @@ import static org.mockito.Mockito.when;
 public class GameViewTest {
     private GameView gameView;
     private final int DIMENSION = 5;
-    private final PaletteColor black = PaletteColor.BLACK;
-    private final PaletteColor white = PaletteColor.WHITE;
+    private final Color black = Color.BLACK;
+    private final Color white = Color.WHITE;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Mock
@@ -152,11 +152,11 @@ public class GameViewTest {
         return numberLines;
     }
 
-    private Pawn pawn(PaletteColor color) {
+    private Pawn pawn(Color color) {
         return new Pawn(color);
     }
 
-    private Draught draught(PaletteColor color) {
+    private Draught draught(Color color) {
         return new Draught(color);
     }
 
