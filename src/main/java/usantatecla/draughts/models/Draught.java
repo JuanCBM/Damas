@@ -2,7 +2,7 @@ package usantatecla.draughts.models;
 
 public class Draught extends Piece {
 
-  Draught(Color color) {
+  public Draught(Color color) {
     super(color);
   }
 
@@ -17,5 +17,10 @@ public class Draught extends Piece {
   public String getCode(){
 		return super.getCode().toUpperCase();
   }
+
+	@Override
+	public Piece copy() {
+		return new Draught(this.getColor());
+	}
 
 }

@@ -5,7 +5,7 @@ public class Pawn extends Piece {
     private static char[] CHARACTERS = {'b', 'n'};
     private static final int MAX_DISTANCE = 2;
 
-    Pawn(Color color) {
+    public Pawn(Color color) {
         super(color);
     }
 
@@ -23,6 +23,11 @@ public class Pawn extends Piece {
     
     protected char[] getCodes() {
 		return Pawn.CHARACTERS;
+	}
+
+	@Override
+	public Piece copy() {
+		return new Pawn(this.getColor());
 	}
     
 }

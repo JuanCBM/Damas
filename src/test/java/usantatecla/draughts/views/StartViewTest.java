@@ -1,33 +1,60 @@
 package usantatecla.draughts.views;
 
-import static org.mockito.Mockito.verify;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import usantatecla.draughts.controllers.StartController;
 import usantatecla.draughts.utils.Console;
 
-@RunWith(MockitoJUnitRunner.class)
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.mockito.Mockito.*;
+
 public class StartViewTest {
 
-  @Mock
-  StartController startController;
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-  @Mock
-  Console console;
+    @Mock
+    private StartController startController;
 
-  @InjectMocks
-  StartView startView;
+    @Spy
+    private Console console;
 
-  @Test
-  public void testGivenStartViewWhenInteractThenNoError() {
-    this.startView.interact(startController);
+    @InjectMocks
+    private final StartView startView = new StartView();
 
-    verify(this.startController).start();
-    verify(console).writeln(Mockito.anyString());
-  }
+    @Before
+    public void before() {
+        MockitoAnnotations.initMocks(this);
+        System.setOut(new PrintStream(outContent));
+    }
 
+    @Test(expected = AssertionError.class)
+    public void testInteractNullControllerShouldThrowError() {
+        startView.interact(null);
+    }
+
+    @Test
+    public void testInteractShouldBeCalledOnce() {
+        this.startView.interact(this.startController);
+        verify(startController, times(1)).start();
+        verify(startController, atMost(1)).start();
+    }
+
+    @Test
+    public void testInteractConsoleShouldWriteTitle() {
+        this.startView.interact(this.startController);
+        verify(this.console, times(1)).writeln(anyString());
+    }
+
+    @Test
+    public void testInteractConsoleShouldPrintTitle() {
+        startView.interact(this.startController);
+        Assert.assertTrue(outContent.toString().contains("Draughts"));
+    }
 }

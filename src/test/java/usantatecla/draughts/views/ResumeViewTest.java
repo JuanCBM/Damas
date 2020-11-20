@@ -1,49 +1,43 @@
 package usantatecla.draughts.views;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
 import usantatecla.draughts.controllers.ResumeController;
-import usantatecla.draughts.utils.Console;
 import usantatecla.draughts.utils.YesNoDialog;
 
-@RunWith(MockitoJUnitRunner.class)
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.initMocks;
+
 public class ResumeViewTest {
 
-  @Mock
-  ResumeController resumeController;
+	@InjectMocks
+	ResumeView resumeView = new ResumeView();
 
-  @Mock
-  Console console;
+	@Mock
+	ResumeController resumeController;
 
-  @Mock
-  YesNoDialog yesNoDialog;
+	@Mock
+	YesNoDialog yesNoDialog;
 
-  @InjectMocks
-  ResumeView resumeView;
+	@Before
+	public void before() {
+		initMocks(this);
+	}
 
-  @Test
-  public void testGivenResumeViewWhenInteractThenReset() {
-    when(this.yesNoDialog.read(Mockito.anyString())).thenReturn(true);
-    this.resumeView.interact(resumeController);
-    verify(this.resumeController).reset();
-  }
-
-  @Test
-  public void testGivenResumeViewWhenInteractThenNext() {
-    when(this.yesNoDialog.read(Mockito.anyString())).thenReturn(false);
-    this.resumeView.interact(resumeController);
-    verify(this.resumeController).next();
-  }
-
-  @Test(expected = AssertionError.class)
-  public void testGivenResumeViewWhenInteractThenError() {
-    this.resumeView.interact(null);
-  }
-
+	@Test
+	public void testGivenResumeQuestionOnYesThenResetState() {
+		when(this.yesNoDialog.read(anyString())).thenReturn(true);
+		this.resumeView.interact(resumeController);
+		verify(resumeController, times(1)).reset();
+	}
+	
+	@Test
+	public void testGivenResumeQuestionOnNoThenStateFinal() {
+		when(this.yesNoDialog.read(anyString())).thenReturn(false);
+		this.resumeView.interact(resumeController);
+		verify(resumeController, times(1)).next();
+	}
 }

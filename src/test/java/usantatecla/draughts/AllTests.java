@@ -3,18 +3,18 @@ package usantatecla.draughts;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
-import usantatecla.draughts.controllers.AllControllerTests;
-import usantatecla.draughts.models.AllModelTests;
+
+import usantatecla.draughts.controllers.AllControllersTests;
+import usantatecla.draughts.models.AllModelsTests;
+import usantatecla.draughts.utils.AllUtilsTests;
 import usantatecla.draughts.views.AllViewTests;
 
-//@formatter:off
 @RunWith(Suite.class)
 @SuiteClasses({
-  AllModelTests.class,
-  AllControllerTests.class,
-  AllViewTests.class,
+	AllControllersTests.class,
+	AllModelsTests.class,
+	AllUtilsTests.class,
+	AllViewTests.class
 })
-//@formatter:on
 public class AllTests {
-
 }

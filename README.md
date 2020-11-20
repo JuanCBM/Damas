@@ -1,8 +1,11 @@
-<h1 align="center">Solución pruebasUnitariasConDobles   👨🏻‍💻   </h1>
+<h1 align="center">Solución refactor 👨🏻‍💻   </h1>
 
-Esta versión está realizada a partir de la solución facilitada por el profesor.
-Hemos añadido Test unitarios con dobles.
-Utilizamos Mockito para realizar las pruebas.
+Esta versión está realizada a partir de la solución de pruebas unitarias facilitada por un compañero.
+
+👤 **jmgs15**
+* Github: [@jmgs15](https://github.com/jmgs15)
+
+Hemos realizado el ejercicio de refactor.
 
 ## Authors
 

@@ -1,84 +1,84 @@
 package usantatecla.draughts.views;
 
-import static org.mockito.Mockito.verify;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
+import usantatecla.draughts.controllers.InteractorController;
 import usantatecla.draughts.controllers.PlayController;
 import usantatecla.draughts.controllers.ResumeController;
 import usantatecla.draughts.controllers.StartController;
 
-@RunWith(MockitoJUnitRunner.class)
+import static org.mockito.Mockito.*;
+
 public class ViewTest {
+    @Mock
+    private StartView startView;
 
-  @Mock
-  private ResumeController resumeController;
+    @Mock
+    private PlayView playView;
 
-  @Mock
-  private PlayController playController;
+    @Mock
+    private ResumeView resumeView;
 
-  @Mock
-  private StartController startController;
+    @InjectMocks
+    private final View view = new View();
 
-  @Mock
-  private ResumeView resumeView;
+    @Before
+    public void before() {
+        MockitoAnnotations.initMocks(this);
+    }
 
-  @Mock
-  private PlayView playView;
+    @Test
+    public void testVisitStartViewVerifyInteractOnce() {
+        StartController startController = mock(StartController.class);
+        this.view.visit(startController);
+        verify(this.startView,times(1)).interact(startController);
+        verifyNoMoreInteractions(startController);
+    }
 
-  @Mock
-  private StartView startView;
+    @Test
+    public void testVisitPlayViewVerifyInteractOnce() {
+        PlayController playController = mock(PlayController.class);
+        this.view.visit(playController);
+        verify(this.playView,times(1)).interact(playController);
+        verifyNoMoreInteractions(playController);
+    }
 
-  @InjectMocks
-  View view;
+    @Test
+    public void testVisitResumeViewVerifyInteractOnce() {
+        ResumeController resumeController = mock(ResumeController.class);
+        this.view.visit(resumeController);
+        verify(this.resumeView,times(1)).interact(resumeController);
+        verifyNoMoreInteractions(resumeController);
+    }
 
-  @Test(expected = AssertionError.class)
-  public void testGivenViewWhenInteractThenError() {
-    this.view.interact(null);
-  }
+    @Test
+    public void testInteractControllerVerifyAcceptOnce() {
+        InteractorController interactorController = mock(InteractorController.class);
+        this.view.interact(interactorController);
+        verify(interactorController, times(1)).accept(this.view);
+        verifyNoMoreInteractions(interactorController);
+    }
 
-  @Test
-  public void testGivenViewWhenInteractThenOk() {
-    this.view.interact(playController);
-    verify(this.playController).accept(this.view);
-  }
+    @Test(expected = AssertionError.class)
+    public void testVisitWithNullStartControllerShouldThrowAssertionError() {
+        this.view.visit((StartController) null);
+    }
 
-  @Test
-  public void testGivenViewWhenVisitResumeControllerThenOk() {
-    this.view.visit(resumeController);
-    verify(this.resumeView).interact(resumeController);
-  }
+    @Test(expected = AssertionError.class)
+    public void testVisitWithNullPlayControllerShouldThrowAssertionError() {
+        this.view.visit((PlayController) null);
+    }
 
-  @Test
-  public void testGivenViewWhenVisitPlayControllerThenOk() {
-    this.view.visit(playController);
-    verify(this.playView).interact(playController);
-  }
+    @Test(expected = AssertionError.class)
+    public void testVisitWithNullResumeControllerShouldThrowAssertionError() {
+        this.view.visit((ResumeController) null);
+    }
 
-  @Test
-  public void testGivenViewWhenVisitStartControllerThenOk() {
-    this.view.visit(startController);
-    verify(this.startView).interact(startController);
-  }
-
-  @Test(expected = AssertionError.class)
-  public void testGivenViewWhenVisitNullPlayControllerThenError() {
-    PlayController playController = null;
-    this.view.visit(playController);
-  }
-
-  @Test(expected = AssertionError.class)
-  public void testGivenViewWhenVisitNullStartControllerThenError() {
-    StartController startController = null;
-    this.view.visit(startController);
-  }
-
-  @Test(expected = AssertionError.class)
-  public void testGivenViewWhenVisitNullResumeControllerThenError() {
-    ResumeController resumeController = null;
-    this.view.visit(resumeController);
-  }
-
+    @Test(expected = AssertionError.class)
+    public void testInteractWithNullControllerShouldThrowAssertionError() {
+        this.view.interact(null);
+    }
 }
