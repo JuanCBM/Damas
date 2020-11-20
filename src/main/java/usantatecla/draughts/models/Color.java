@@ -3,6 +3,8 @@ package usantatecla.draughts.models;
 public enum Color implements ColorGlobal {
   WHITE, BLACK;
 
+  final int[] LIMITS = new int[] {5, 2};
+
   @Override
   public ColorGlobal getInitialColor(final Coordinate coordinate) {
     if (coordinate.isBlack())
