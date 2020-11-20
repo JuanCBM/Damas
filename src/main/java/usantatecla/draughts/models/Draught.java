@@ -2,25 +2,26 @@ package usantatecla.draughts.models;
 
 public class Draught extends Piece {
 
-  public Draught(Color color) {
+  public Draught(ColorGlobal color) {
     super(color);
   }
 
   @Override
-  Error isCorrectDiagonalMovement(int amountBetweenDiagonalPieces, int pair, Coordinate... coordinates) {
+  Error isCorrectDiagonalMovement(int amountBetweenDiagonalPieces, int pair,
+      Coordinate... coordinates) {
     if (amountBetweenDiagonalPieces > 1)
       return Error.TOO_MUCH_EATINGS;
     return null;
   }
 
   @Override
-  public String getCode(){
-		return super.getCode().toUpperCase();
+  public String getCode() {
+    return super.getCode().toUpperCase();
   }
 
-	@Override
-	public Piece copy() {
-		return new Draught(this.getColor());
-	}
+  @Override
+  public Piece copy() {
+    return new Draught(this.getColor());
+  }
 
 }
