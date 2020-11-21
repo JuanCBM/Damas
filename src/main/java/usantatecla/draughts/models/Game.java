@@ -38,20 +38,33 @@ public class Game {
     Error error = null;
     List<Coordinate> removedCoordinates = new ArrayList<Coordinate>();
     List<Piece> removedPieces = new ArrayList<Piece>();
+    
     int pair = 0;
+    
+    Board boardCopy = this.board.copy();
+    
     do {
-      error = this.isCorrectPairMove(pair, coordinates);
-      if (error == null) {
-        this.pairMove(removedCoordinates, removedPieces, pair, coordinates);
-        pair++;
-      }
-    } while (pair < coordinates.length - 1 && error == null);
-    error = this.isCorrectGlobalMove(error, removedCoordinates, coordinates);
-    if (error == null)
-      this.turn.change();
-    else
-      this.unMovesUntilPair(removedCoordinates, removedPieces, pair, coordinates);
-    return error;
+      // error = this.isCorrectPairMove(pair, coordinates);
+     // if (error == null) {
+        
+      ValidatorErrorMove validatorErrorMove = new ValidatorErrorMove(board, turn, origin, target);
+      
+      this.pairMove(removedCoordinates, removedPieces, pair, coordinates);
+      pair++;
+     // }
+    } while (pair < coordinates.length - 1 && validatorErrorMove == null);
+    
+    if(validatorErrorMove!=null) {
+      this.board = boardCopy.copy();
+    }else {
+      this.turn.change();      
+    }
+    
+//    error = this.isCorrectGlobalMove(error, removedCoordinates, coordinates);
+//    if (error == null)
+//    else
+//      this.unMovesUntilPair(removedCoordinates, removedPieces, pair, coordinates);
+    return validatorErrorMove;
   }
 
   private Error isCorrectPairMove(int pair, Coordinate... coordinates) {

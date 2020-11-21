@@ -29,7 +29,7 @@ public class Coordinate extends ConcreteCoordinate {
     }
   }
 
-  private boolean isWithIn() {
+  public boolean isWithIn() {
     return this.isInsideTheLimits(this.row) && this.isInsideTheLimits(this.column);
   }
 
