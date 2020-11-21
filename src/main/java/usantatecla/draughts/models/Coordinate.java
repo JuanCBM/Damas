@@ -30,7 +30,7 @@ public class Coordinate extends ConcreteCoordinate {
   }
 
   private boolean isWithIn() {
-    return this.isInsideTheLimits(row) && this.isInsideTheLimits(column);
+    return this.isInsideTheLimits(this.row) && this.isInsideTheLimits(this.column);
   }
 
   private boolean isInsideTheLimits(int position) {
@@ -45,9 +45,7 @@ public class Coordinate extends ConcreteCoordinate {
     return new Coordinate(this.row + coordinate.row, this.column + coordinate.column);
   }
 
-  // This method should be private (?)
-
-  public Direction getDirection(Coordinate coordinate) {
+  private Direction getDirection(Coordinate coordinate) {
     assert coordinate != null;
     Coordinate substract = coordinate.substract(this);
     for (Direction direction : Direction.values())
