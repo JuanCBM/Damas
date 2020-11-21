@@ -18,14 +18,17 @@ class PlayView extends SubView {
   private static final String ERROR_MESSAGE = "Error!!! Formato incorrecto";
   private static final String LOST_MESSAGE = "Derrota!!! No puedes mover tus fichas!!!";
   private String string;
+  private static final String TITTLE = "Draughts";
 
   PlayView() {
     super();
+    this.console.writeln(TITTLE);
   }
 
   void interact(PlayController playController) {
     assert playController != null;
     Error error;
+    this.console.writeln();
     new GameView().write(playController);
 
     do {
