@@ -22,13 +22,8 @@ public class Game {
     for (int i = 0; i < Coordinate.getDimension(); i++)
       for (int j = 0; j < Coordinate.getDimension(); j++) {
         Coordinate coordinate = new Coordinate(i, j);
-        Color color = ColorFactory.getInitialColor(coordinate);
-        Piece piece = null;
-        if (!color.isNull()) {
-          piece = new Pawn(color);
-        }
+        Piece piece = this.getInitialPiece(coordinate);
         this.board.put(coordinate, piece);
-
       }
     if (this.turn.getColor() != PaletteColor.WHITE)
       this.turn.change();
@@ -40,8 +35,7 @@ public class Game {
     List<Piece> removedPieces = new ArrayList<Piece>();
     int pair = 0;
 
-    GameMemento gameMemento = new GameMemento();
-    gameMemento.set(this.board.copy());
+    GameMemento gameMemento = this.createMemento();
 
     do {
       error = this.isCorrectPairMove(pair, coordinates);
@@ -58,6 +52,13 @@ public class Game {
       this.set(gameMemento);
 
     return error;
+  }
+
+  private Piece getInitialPiece(Coordinate coordinate) {
+    Color color = ColorFactory.getInitialColor(coordinate);
+    if (!color.isNull())
+      return new Pawn(color);
+    return null;
   }
 
   private Error isCorrectPairMove(int pair, Coordinate... coordinates) {
