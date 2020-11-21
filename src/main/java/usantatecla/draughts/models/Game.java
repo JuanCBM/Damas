@@ -39,6 +39,10 @@ public class Game {
     List<Coordinate> removedCoordinates = new ArrayList<Coordinate>();
     List<Piece> removedPieces = new ArrayList<Piece>();
     int pair = 0;
+
+    GameMemento gameMemento = new GameMemento();
+    gameMemento.set(this.board.copy());
+
     do {
       error = this.isCorrectPairMove(pair, coordinates);
       if (error == null) {
@@ -47,10 +51,12 @@ public class Game {
       }
     } while (pair < coordinates.length - 1 && error == null);
     error = this.isCorrectGlobalMove(error, removedCoordinates, coordinates);
+
     if (error == null)
       this.turn.change();
     else
-      this.unMovesUntilPair(removedCoordinates, removedPieces, pair, coordinates);
+      this.set(gameMemento);
+
     return error;
   }
 
@@ -108,17 +114,6 @@ public class Game {
     return null;
   }
 
-  private void unMovesUntilPair(List<Coordinate> removedCoordinates, List<Piece> removedPieces,
-      int pair, Coordinate... coordinates) {
-    for (int j = pair; j > 0; j--)
-      this.board.move(coordinates[j], coordinates[j - 1]);
-    for (int i = 0; i < removedCoordinates.size(); i++) {
-      Coordinate removedCoordinate = removedCoordinates.get(i);
-      Piece removedPiece = removedPieces.get(i);
-      this.board.put(removedCoordinate, removedPiece);
-    }
-  }
-
   public boolean isBlocked() {
     for (Coordinate coordinate : this.getCoordinatesWithActualColor())
       if (!this.isBlocked(coordinate))
@@ -162,10 +157,6 @@ public class Game {
     return this.turn.getColor();
   }
 
-  private PaletteColor getOppositeTurnColor() {
-    return this.turn.getOppositeColor();
-  }
-
   public Piece getPiece(Coordinate coordinate) {
     assert coordinate != null;
     return this.board.getPiece(coordinate);
@@ -173,6 +164,17 @@ public class Game {
 
   public int getDimension() {
     return Coordinate.getDimension();
+  }
+
+  public GameMemento createMemento() {
+    GameMemento memento = new GameMemento();
+    memento.set(this.board.copy());
+
+    return memento;
+  }
+
+  public void set(GameMemento gameMemento) {
+    this.board = gameMemento.getBoard();
   }
 
   @Override

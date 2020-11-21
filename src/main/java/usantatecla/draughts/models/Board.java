@@ -120,4 +120,19 @@ class Board {
     return true;
   }
 
+  public Board copy() {
+    Board board = new Board();
+    for (int i = 0; i < Coordinate.getDimension(); i++)
+      for (int j = 0; j < Coordinate.getDimension(); j++) {
+        Coordinate coordinate = new Coordinate(i, j);
+        Piece piece = null;
+        if (this.pieces[i][j] != null) {
+          piece = this.pieces[i][j].copy();
+        }
+        board.put(coordinate, piece);
+      }
+
+    return board;
+  }
+
 }
