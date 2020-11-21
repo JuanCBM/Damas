@@ -45,7 +45,7 @@ public class Coordinate extends ConcreteCoordinate {
     return new Coordinate(this.row + coordinate.row, this.column + coordinate.column);
   }
 
-  private Direction getDirection(Coordinate coordinate) {
+  public Direction getDirection(Coordinate coordinate) {
     assert coordinate != null;
     Coordinate substract = coordinate.substract(this);
     for (Direction direction : Direction.values())
