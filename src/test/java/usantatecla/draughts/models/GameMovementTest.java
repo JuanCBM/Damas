@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
+// @formatter:off
 public class GameMovementTest {
 
 	Game game;
@@ -99,8 +99,8 @@ public class GameMovementTest {
 				"        ");
 		Error error = move(coordinate(6, 5), coordinate(4, 7), coordinate(2, 5), coordinate(0, 7));
 		assertEquals(Error.NOT_EMPTY_TARGET, error);
-		assertTrue(piece(coordinate(3, 6)) instanceof Pawn);
-		assertTrue(piece(coordinate(5, 6)) instanceof Draught);
+  	    assertEquals(piece(coordinate(3, 6)).getClass(), Pawn.class);
+  	    assertEquals(piece(coordinate(5, 6)).getClass(), Draught.class);
 	}
 	
 	@Test
@@ -146,7 +146,7 @@ public class GameMovementTest {
 				"        ");
 		Error error = move(coordinate(6, 7), coordinate(4, 5), coordinate(2, 3), coordinate(0, 1));
 		assertNull(error);
-		assertTrue(piece(coordinate(0, 1)) instanceof Draught);
+		assertEquals(piece(coordinate(0, 1)).getClass(), Draught.class);
 		assertNull(piece(coordinate(1, 2)));
 	}
 	
