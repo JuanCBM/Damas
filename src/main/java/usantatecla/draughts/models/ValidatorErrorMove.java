@@ -12,13 +12,11 @@ public class ValidatorErrorMove {
   private Coordinate[] coordinates;
   private int removedCoordinatesSize;
 
-  ValidatorErrorMove(Board board, Turn turn, int pair, Coordinate... coordinates) {
+  ValidatorErrorMove(Board board, Turn turn, Coordinate origin, Coordinate target) {
     this.board = board;
     this.turn = turn;
-    this.origin = coordinates[pair];
-    this.target = coordinates[pair + 1];
-    this.pair = pair;
-    this.coordinates = coordinates;
+    this.origin = origin;
+    this.target = target;
   }
 
   private Error isCorrectPairMove(Coordinate origin, Coordinate target) {
@@ -89,7 +87,7 @@ public class ValidatorErrorMove {
     }
     List<Piece> betweenDiagonalPieces =
         this.board.getBetweenDiagonalPieces(this.origin, this.target);
-    return this.board.getPiece(this.origin).isCorrectMovement(betweenDiagonalPieces, this.pair,
-        this.coordinates);
+    return this.board.getPiece(this.origin).isCorrectMovement(betweenDiagonalPieces, origin,
+        target);
   }
 }

@@ -54,6 +54,7 @@ public class Game {
     // error = validatorErrorMove.checkGlobalError(validatorErrorMove.checkError());
 
     error = this.isCorrectGlobalMove(error, removedCoordinates, coordinates.length);
+
     if (error == null)
       this.turn.change();
     else
@@ -79,7 +80,6 @@ public class Game {
     List<Piece> betweenDiagonalPieces = this.board.getBetweenDiagonalPieces(origin, target);
     return this.board.getPiece(origin).isCorrectMovement(betweenDiagonalPieces, origin, target);
   }
-
 
   private void pairMove(List<Coordinate> removedCoordinates, Coordinate origin, Coordinate target) {
     Coordinate forRemoving = this.getBetweenDiagonalPiece(origin, target);
@@ -116,7 +116,6 @@ public class Game {
       return Error.TOO_MUCH_JUMPS;
     return null;
   }
-
 
   public boolean isBlocked() {
     for (Coordinate coordinate : this.getCoordinatesWithActualColor())
