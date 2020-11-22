@@ -36,24 +36,21 @@ public class Game {
 
     GameMemento gameMemento = this.createMemento();
 
-    // ValidatorErrorMove validatorErrorMove = null;
+    ValidatorErrorMove validatorErrorMove = null;
     do {
       Coordinate origin = coordinates[pair];
       Coordinate target = coordinates[pair + 1];
-      error = this.isCorrectPairMove(origin, target);
 
-      // validatorErrorMove = new ValidatorErrorMove(this.board, this.turn, pair, coordinates);
-      // error = validatorErrorMove.checkError();
+      validatorErrorMove = new ValidatorErrorMove(this.board, this.turn, pair, coordinates);
+      error = validatorErrorMove.checkError();
       if (error == null) {
         this.pairMove(removedCoordinates, origin, target);
         pair++;
       }
     } while (pair < coordinates.length - 1 && error == null);
 
-    // validatorErrorMove.setRemovedSize(removedCoordinates.size());
-    // error = validatorErrorMove.checkGlobalError(validatorErrorMove.checkError());
-
-    error = this.isCorrectGlobalMove(error, removedCoordinates, coordinates.length);
+    validatorErrorMove.setRemovedSizeAndError(removedCoordinates.size(), error);
+    error = validatorErrorMove.checkGlobalError();
 
     if (error == null)
       this.turn.change();
@@ -68,17 +65,6 @@ public class Game {
     if (!color.isNull())
       return new Pawn(color);
     return null;
-  }
-
-  private Error isCorrectPairMove(Coordinate origin, Coordinate target) {
-    if (board.isEmpty(origin))
-      return Error.EMPTY_ORIGIN;
-    if (this.turn.getOppositeColor() == this.board.getColor(origin))
-      return Error.OPPOSITE_PIECE;
-    if (!this.board.isEmpty(target))
-      return Error.NOT_EMPTY_TARGET;
-    List<Piece> betweenDiagonalPieces = this.board.getBetweenDiagonalPieces(origin, target);
-    return this.board.getPiece(origin).isCorrectMovement(betweenDiagonalPieces, origin, target);
   }
 
   private void pairMove(List<Coordinate> removedCoordinates, Coordinate origin, Coordinate target) {
@@ -108,15 +94,6 @@ public class Game {
     return null;
   }
 
-  private Error isCorrectGlobalMove(Error error, List<Coordinate> removedCoordinates,
-      int coordinatesLength) {
-    if (error != null)
-      return error;
-    if (coordinatesLength > 2 && coordinatesLength > removedCoordinates.size() + 1)
-      return Error.TOO_MUCH_JUMPS;
-    return null;
-  }
-
   public boolean isBlocked() {
     for (Coordinate coordinate : this.getCoordinatesWithActualColor())
       if (!this.isBlocked(coordinate))
@@ -139,11 +116,14 @@ public class Game {
 
   private boolean isBlocked(Coordinate coordinate) {
     for (int i = 1; i <= 2; i++)
-      for (Coordinate target : coordinate.getDiagonalCoordinates(i))
-        if (this.isCorrectPairMove(coordinate, target) == null)
+      for (Coordinate target : coordinate.getDiagonalCoordinates(i)) {
+        Coordinate coordinates[] = { coordinate, target };
+        ValidatorErrorMove errorMove = new ValidatorErrorMove(this.board, this.turn, 0, coordinates);
+        if (errorMove.checkError() == null)
           return false;
+      }
     return true;
-  }
+ }
 
   public void cancel() {
     for (Coordinate coordinate : this.getCoordinatesWithActualColor())

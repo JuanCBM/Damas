@@ -8,39 +8,29 @@ public class ValidatorErrorMove {
   private Turn turn;
   private Coordinate origin;
   private Coordinate target;
-  private int pair;
   private Coordinate[] coordinates;
   private int removedCoordinatesSize;
-
-  ValidatorErrorMove(Board board, Turn turn, Coordinate origin, Coordinate target) {
+  private Error error;
+  
+  ValidatorErrorMove(Board board, Turn turn, int pair, Coordinate... coordinates) {
     this.board = board;
     this.turn = turn;
-    this.origin = origin;
-    this.target = target;
+    this.origin = coordinates[pair];
+    this.target = coordinates[pair + 1];
+    this.coordinates = coordinates;
   }
 
-  private Error isCorrectPairMove(Coordinate origin, Coordinate target) {
-    if (board.isEmpty(origin))
-      return Error.EMPTY_ORIGIN;
-    if (this.turn.getOppositeColor() == this.board.getColor(origin))
-      return Error.OPPOSITE_PIECE;
-    if (!this.board.isEmpty(target))
-      return Error.NOT_EMPTY_TARGET;
-    List<Piece> betweenDiagonalPieces = this.board.getBetweenDiagonalPieces(origin, target);
-    return this.board.getPiece(origin).isCorrectMovement(betweenDiagonalPieces, origin, target);
-  }
-
-
-  public void setRemovedSize(int size) {
+  public void setRemovedSizeAndError(int size, Error error) {
     this.removedCoordinatesSize = size;
+    this.error = error;
   }
 
   Error checkError() {
     return this.checkIsEmptyOrigin();
   }
 
-  Error checkGlobalError(Error error) {
-    if (error == null)
+  Error checkGlobalError() {
+    if (this.error == null)
       return this.checkIsTooMuchJumps();
     return error;
   }
@@ -60,23 +50,8 @@ public class ValidatorErrorMove {
 
   private Error checkIsValidTurn() {
     Color color = this.board.getColor(this.origin);
-    if (this.turn.getOppositeColor() != color) {
+    if (this.turn.getOppositeColor() == color) {
       return Error.OPPOSITE_PIECE;
-    }
-    return this.checkIsDiagonalMove();
-  }
-
-  private Error checkIsDiagonalMove() {
-    if (!this.origin.isOnDiagonal(this.target)) {
-      return Error.NOT_DIAGONAL;
-    }
-    return this.checkIsAdvancedMove();
-  }
-
-  private Error checkIsAdvancedMove() {
-    Piece piece = this.board.getPiece(this.origin);
-    if (!piece.isAdvanced(this.origin, this.target)) {
-      return Error.NOT_ADVANCED;
     }
     return this.checkIsEmptyTarget();
   }
