@@ -32,7 +32,6 @@ public class Game {
   public Error move(Coordinate... coordinates) {
     Error error = null;
     List<Coordinate> removedCoordinates = new ArrayList<Coordinate>();
-    List<Piece> removedPieces = new ArrayList<Piece>();
     int pair = 0;
 
     GameMemento gameMemento = this.createMemento();
@@ -46,7 +45,7 @@ public class Game {
       // validatorErrorMove = new ValidatorErrorMove(this.board, this.turn, pair, coordinates);
       // error = validatorErrorMove.checkError();
       if (error == null) {
-        this.pairMove(removedCoordinates, removedPieces, origin, target);
+        this.pairMove(removedCoordinates, origin, target);
         pair++;
       }
     } while (pair < coordinates.length - 1 && error == null);
@@ -82,13 +81,10 @@ public class Game {
   }
 
 
-  private void pairMove(List<Coordinate> removedCoordinates, List<Piece> removedPieces,
-      Coordinate origin, Coordinate target) {
+  private void pairMove(List<Coordinate> removedCoordinates, Coordinate origin, Coordinate target) {
     Coordinate forRemoving = this.getBetweenDiagonalPiece(origin, target);
     if (forRemoving != null) {
-      Piece forRemovingPiece = this.getPiece(forRemoving).copy();
       removedCoordinates.add(0, forRemoving);
-      removedPieces.add(0, forRemovingPiece);
       this.board.remove(forRemoving);
     }
 
