@@ -22,7 +22,7 @@ public class PieceBuilderTest {
   }
 
   @Test
-  public void testGivenPieceBuilderWhenBlackDraughtThenOK() {
+  public void testGivenPieceBuilderWhenThenOK() {
     // @formatter:off
     List<Triplet<Character, Color, Class<?>>> characterColorClass = Arrays.asList(
         new Triplet<>('N', Color.BLACK, Draught.class), 
