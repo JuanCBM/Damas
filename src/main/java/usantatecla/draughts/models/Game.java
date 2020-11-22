@@ -37,15 +37,20 @@ public class Game {
 
     GameMemento gameMemento = this.createMemento();
 
+    ValidatorErrorMove validatorErrorMove = null;
     do {
-      error = this.isCorrectPairMove(pair, coordinates);
+      // error = this.isCorrectPairMove(pair, coordinates);
+      validatorErrorMove = new ValidatorErrorMove(this.board, this.turn, pair, coordinates);
+      error = validatorErrorMove.checkError();
       if (error == null) {
         this.pairMove(removedCoordinates, removedPieces, pair, coordinates);
         pair++;
       }
     } while (pair < coordinates.length - 1 && error == null);
-    error = this.isCorrectGlobalMove(error, removedCoordinates, coordinates);
+    validatorErrorMove.setRemovedSize(removedCoordinates.size());
+    error = validatorErrorMove.checkGlobalError(validatorErrorMove.checkError());
 
+    // error = this.isCorrectGlobalMove(error, removedCoordinates, coordinates);
     if (error == null)
       this.turn.change();
     else
@@ -106,14 +111,14 @@ public class Game {
     return null;
   }
 
-  private Error isCorrectGlobalMove(Error error, List<Coordinate> removedCoordinates,
+  /* private Error isCorrectGlobalMove(Error error, List<Coordinate> removedCoordinates,
       Coordinate... coordinates) {
     if (error != null)
       return error;
     if (coordinates.length > 2 && coordinates.length > removedCoordinates.size() + 1)
       return Error.TOO_MUCH_JUMPS;
     return null;
-  }
+  } */
 
   public boolean isBlocked() {
     for (Coordinate coordinate : this.getCoordinatesWithActualColor())
