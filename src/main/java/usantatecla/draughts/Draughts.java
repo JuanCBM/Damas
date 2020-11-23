@@ -1,30 +1,27 @@
 package usantatecla.draughts;
 
-import usantatecla.draughts.controllers.Logic;
 import usantatecla.draughts.controllers.InteractorController;
-import usantatecla.draughts.views.View;
+import usantatecla.draughts.controllers.Logic;
 
 class Draughts {
-    
-    private View view;
-    private Logic logic;
 
-    private Draughts(){
-        this.view = new View();
-        this.logic = new Logic();
-    }
+  private Logic logic;
 
-    private void play() {
-        InteractorController controller;
-		do {
-			controller = this.logic.getController();
-			if (controller != null)
-				this.view.interact(controller);
-		} while (controller != null); 
-    }
+  private Draughts() {
+    this.logic = new Logic();
+  }
 
-    public static void main(String[] args){
-        new Draughts().play();
-    }
-    
+  private void play() {
+    InteractorController controller;
+    do {
+      controller = this.logic.getController();
+      if (controller != null)
+        controller.control();
+    } while (controller != null);
+  }
+
+  public static void main(String[] args) {
+    new Draughts().play();
+  }
+
 }
