@@ -108,9 +108,4 @@ public class PlayController extends InteractorController {
     return coordinates;
   }
 
-
-  private String readMovementFormat(PaletteColor paletteColor) {
-    return PROMPT.replace(COLOR_PARAM, COLOR_VALUES[paletteColor.ordinal()]);
-  }
-
 }
