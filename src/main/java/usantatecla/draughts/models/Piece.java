@@ -35,9 +35,8 @@ public abstract class Piece {
     assert origin != null;
     assert target != null;
     int difference = origin.getRow() - target.getRow();
-    if (color == PaletteColor.WHITE)
-      return difference > 0;
-    return difference < 0;
+
+    return PaletteColor.WHITE.equals(color) ? difference > 0 : difference < 0;
   }
 
   public Color getColor() {
