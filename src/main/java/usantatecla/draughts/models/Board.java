@@ -59,9 +59,7 @@ class Board {
 
   Color getColor(Coordinate coordinate) {
     final Piece piece = this.getPiece(coordinate);
-    if (piece == null)
-      return null;
-    return piece.getColor();
+    return piece == null ? null : piece.getColor();
   }
 
   boolean isEmpty(Coordinate coordinate) {
