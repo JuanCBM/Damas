@@ -3,17 +3,15 @@ package usantatecla.draughts.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import org.apache.commons.lang3.StringUtils;
 import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Error;
 import usantatecla.draughts.models.Game;
 import usantatecla.draughts.models.PaletteColor;
 import usantatecla.draughts.models.State;
+import usantatecla.draughts.views.ConsoleView;
 import usantatecla.draughts.views.GameView;
-import usantatecla.draughts.views.MessageView;
-import usantatecla.draughts.views.PlayView;
 
-public class PlayController extends InteractorController {
+public class PlayController extends Controller {
 
   private static final int MINIMUM_COORDINATES = 2;
   private static final String CANCEL_FORMAT = "-1";
@@ -26,13 +24,37 @@ public class PlayController extends InteractorController {
   private static final String[] COLOR_VALUES = {"blancas", "negras"};
   private static final String PROMPT = "Mueven las " + COLOR_PARAM + ": ";
 
-  private PlayView playView;
   private String string;
+  private ConsoleView consoleView;
 
   public PlayController(Game game, State state) {
     super(game, state);
-    new MessageView(TITTLE).writeln();
-    this.playView = new PlayView();
+    this.consoleView = new ConsoleView();
+    this.consoleView.writeln(TITTLE);
+  }
+
+  @Override
+  public void control() {
+    Error error;
+    this.consoleView.writeln();
+    new GameView().write(this.game);
+
+    do {
+      error = null;
+      this.string = this.consoleView
+          .read(PROMPT.replace(COLOR_PARAM, COLOR_VALUES[this.getColor().ordinal()]));
+      if (this.isCanceledFormat())
+        this.cancel();
+      else if (!this.isMoveFormat()) {
+        error = Error.BAD_FORMAT;
+        this.consoleView.writeln(ERROR_MESSAGE);
+      } else {
+        error = this.move(this.getCoordinates());
+        new GameView().write(this.game);
+        if (error == null && this.isBlocked())
+          this.consoleView.writeln(LOST_MESSAGE);
+      }
+    } while (error != null);
 
   }
 
@@ -55,43 +77,6 @@ public class PlayController extends InteractorController {
     return this.game.getTurnColor();
   }
 
-  public boolean isBlocked() {
-    return this.game.isBlocked();
-  }
-
-  @Override
-  public void control() {
-
-    Error error;
-    new MessageView(StringUtils.EMPTY).writeln();
-    new GameView().write(this.game);
-
-    do {
-      error = null;
-      this.string =
-          this.playView.read(PROMPT.replace(COLOR_PARAM, COLOR_VALUES[this.getColor().ordinal()]));
-      if (this.isCanceledFormat())
-        this.cancel();
-      else if (!this.isMoveFormat()) {
-        error = Error.BAD_FORMAT;
-        new MessageView(ERROR_MESSAGE).writeln();
-      } else {
-        error = this.move(this.getCoordinates());
-        new GameView().write(this.game);
-        if (error == null && this.isBlocked())
-          new MessageView(LOST_MESSAGE).writeln();
-      }
-    } while (error != null);
-  }
-
-  public boolean isCanceledFormat() {
-    return string.equals(CANCEL_FORMAT);
-  }
-
-  public boolean isMoveFormat() {
-    return Pattern.compile(MOVEMENT_FORMAT).matcher(string).find();
-  }
-
   public Coordinate[] getCoordinates() {
     assert this.isMoveFormat();
     List<Coordinate> coordinateList = new ArrayList<Coordinate>();
@@ -106,6 +91,18 @@ public class PlayController extends InteractorController {
       coordinates[i] = coordinateList.get(i);
     }
     return coordinates;
+  }
+
+  private boolean isBlocked() {
+    return this.game.isBlocked();
+  }
+
+  private boolean isCanceledFormat() {
+    return string.equals(CANCEL_FORMAT);
+  }
+
+  private boolean isMoveFormat() {
+    return Pattern.compile(MOVEMENT_FORMAT).matcher(string).find();
   }
 
 }

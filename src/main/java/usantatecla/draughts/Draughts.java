@@ -1,6 +1,6 @@
 package usantatecla.draughts;
 
-import usantatecla.draughts.controllers.InteractorController;
+import usantatecla.draughts.controllers.Controller;
 import usantatecla.draughts.controllers.Logic;
 
 class Draughts {
@@ -12,7 +12,7 @@ class Draughts {
   }
 
   private void play() {
-    InteractorController controller;
+    Controller controller;
     do {
       controller = this.logic.getController();
       if (controller != null)

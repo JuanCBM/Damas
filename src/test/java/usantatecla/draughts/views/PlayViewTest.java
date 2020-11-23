@@ -7,7 +7,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import usantatecla.draughts.controllers.PlayController;
 import usantatecla.draughts.models.PaletteColor;
@@ -17,9 +16,6 @@ public class PlayViewTest {
 
   private static final String CANCEL_FORMAT = "-1";
   private static final String LOST_MESSAGE = "Derrota!!! No puedes mover tus fichas!!!";
-
-  @InjectMocks
-  PlayView playView;
 
   @Mock
   Console console;
@@ -52,7 +48,7 @@ public class PlayViewTest {
   @Test
   public void testWhenIntroducingValidCoordinateAndBlockedThenLoose() {
     doReturn("12.23").when(console).readString(any());
-    doReturn(true).when(playController).isBlocked();
+    // doReturn(true).when(playController).isBlocked();
     // playView.interact(playController);
     verify(console, times(1)).writeln(LOST_MESSAGE);
   }

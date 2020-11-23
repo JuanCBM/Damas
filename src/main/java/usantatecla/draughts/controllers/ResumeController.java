@@ -4,7 +4,7 @@ import usantatecla.draughts.models.Game;
 import usantatecla.draughts.models.State;
 import usantatecla.draughts.utils.YesNoDialog;
 
-public class ResumeController extends InteractorController {
+public class ResumeController extends Controller {
 
   private YesNoDialog yesNoDialog;
   private static final String MESSAGE = "¿Queréis jugar otra";
@@ -29,6 +29,9 @@ public class ResumeController extends InteractorController {
       this.reset();
     else
       this.next();
+
   }
+
+
 
 }
