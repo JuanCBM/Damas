@@ -6,7 +6,6 @@ public abstract class Piece {
 
   protected Color color;
   private static String[] CODES = {"b", "n"};
-  public static final int TYPES = 2;
 
   Piece(Color color) {
     assert (!color.isNull());
@@ -77,4 +76,7 @@ public abstract class Piece {
     return true;
   }
 
+  public static int getNumberOfCodes() {
+    return CODES.length;
+  }
 }

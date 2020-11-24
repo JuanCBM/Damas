@@ -92,7 +92,7 @@ public class Coordinate extends ConcreteCoordinate {
   }
 
   boolean isBlack() {
-    return (this.row + this.column) % Piece.TYPES != 0;
+    return (this.row + this.column) % Piece.getNumberOfCodes() != 0;
   }
 
   public boolean isLast() {
