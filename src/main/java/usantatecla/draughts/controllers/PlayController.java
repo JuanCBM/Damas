@@ -3,10 +3,10 @@ package usantatecla.draughts.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import usantatecla.draughts.models.Color;
 import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Error;
 import usantatecla.draughts.models.Game;
-import usantatecla.draughts.models.PaletteColor;
 import usantatecla.draughts.models.State;
 import usantatecla.draughts.views.ConsoleView;
 import usantatecla.draughts.views.GameView;
@@ -73,7 +73,7 @@ public class PlayController extends Controller {
     this.state.next();
   }
 
-  public PaletteColor getColor() {
+  public Color getColor() {
     return this.game.getTurnColor();
   }
 

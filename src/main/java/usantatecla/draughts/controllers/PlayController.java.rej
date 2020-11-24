@@ -1,0 +1,9 @@
+diff a/src/main/java/usantatecla/draughts/controllers/PlayController.java b/src/main/java/usantatecla/draughts/controllers/PlayController.java	(rejected hunks)
+@@ -1,6 +1,6 @@
+ package usantatecla.draughts.controllers;
+ 
+-import usantatecla.draughts.models.PaletteColor;
++import usantatecla.draughts.models.Color;
+ import usantatecla.draughts.models.Coordinate;
+ import usantatecla.draughts.models.State;
+ import usantatecla.draughts.models.Error;
