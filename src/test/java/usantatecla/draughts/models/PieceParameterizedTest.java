@@ -83,11 +83,11 @@ public class PieceParameterizedTest {
         coordinatesCorrectMovement[0], coordinatesCorrectMovement[1]));
   }
 
-  private static Draught draught(PaletteColor paletteColor) {
+  private static Draught draught(Color paletteColor) {
     return new Draught(paletteColor);
   }
 
-  private static Pawn pawn(PaletteColor paletteColor) {
+  private static Pawn pawn(Color paletteColor) {
     return new Pawn(paletteColor);
   }
 
@@ -95,11 +95,11 @@ public class PieceParameterizedTest {
     return new Coordinate(row, column);
   }
 
-  private static PaletteColor white() {
-    return PaletteColor.WHITE;
+  private static Color white() {
+    return Color.WHITE;
   }
 
-  private static PaletteColor black() {
-    return PaletteColor.BLACK;
+  private static Color black() {
+    return Color.BLACK;
   }
 }

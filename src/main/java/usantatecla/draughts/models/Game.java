@@ -25,7 +25,7 @@ public class Game {
         Piece piece = this.getInitialPiece(coordinate);
         this.board.put(coordinate, piece);
       }
-    if (this.turn.getColor() != PaletteColor.WHITE)
+    if (this.turn.getColor() != Color.WHITE)
       this.turn.change();
   }
 
@@ -61,7 +61,7 @@ public class Game {
   }
 
   private Piece getInitialPiece(Coordinate coordinate) {
-    Color color = ColorFactory.getInitialColor(coordinate);
+    Color color = Color.getInitialColor(coordinate);
     if (!color.isNull())
       return new Pawn(color);
     return null;
@@ -117,13 +117,14 @@ public class Game {
   private boolean isBlocked(Coordinate coordinate) {
     for (int i = 1; i <= 2; i++)
       for (Coordinate target : coordinate.getDiagonalCoordinates(i)) {
-        Coordinate coordinates[] = { coordinate, target };
-        ValidatorErrorMove errorMove = new ValidatorErrorMove(this.board, this.turn, 0, coordinates);
+        Coordinate coordinates[] = {coordinate, target};
+        ValidatorErrorMove errorMove =
+            new ValidatorErrorMove(this.board, this.turn, 0, coordinates);
         if (errorMove.checkError() == null)
           return false;
       }
     return true;
- }
+  }
 
   public void cancel() {
     for (Coordinate coordinate : this.getCoordinatesWithActualColor())
@@ -136,7 +137,7 @@ public class Game {
     return this.board.getColor(coordinate);
   }
 
-  public PaletteColor getTurnColor() {
+  public Color getTurnColor() {
     return this.turn.getColor();
   }
 

@@ -6,6 +6,7 @@ public abstract class Piece {
 
   protected Color color;
   private static String[] CODES = {"b", "n"};
+  public static final int TYPES = 2;
 
   Piece(Color color) {
     assert (!color.isNull());
@@ -27,15 +28,15 @@ public abstract class Piece {
       Coordinate target);
 
   boolean isLimit(Coordinate coordinate) {
-    return coordinate.isFirst() && this.getColor() == PaletteColor.WHITE
-        || coordinate.isLast() && this.getColor() == PaletteColor.BLACK;
+    return coordinate.isFirst() && this.getColor() == Color.WHITE
+        || coordinate.isLast() && this.getColor() == Color.BLACK;
   }
 
   boolean isAdvanced(Coordinate origin, Coordinate target) {
     assert origin != null;
     assert target != null;
     int difference = origin.getRow() - target.getRow();
-    if (color == PaletteColor.WHITE)
+    if (color == Color.WHITE)
       return difference > 0;
     return difference < 0;
   }
