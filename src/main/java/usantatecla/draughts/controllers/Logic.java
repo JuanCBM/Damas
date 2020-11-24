@@ -15,14 +15,18 @@ public class Logic {
   public Logic() {
     this.game = new Game();
     this.state = new State();
-    this.controllers = new HashMap<StateValue, InteractorController>();
-    this.controllers.put(StateValue.IN_GAME, new PlayController(this.game, this.state));
-    this.controllers.put(StateValue.FINAL, new ResumeController(this.game, this.state));
-    this.controllers.put(StateValue.EXIT, null);
+    this.initializeController();
   }
 
   public InteractorController getController() {
     return this.controllers.get(this.state.getValueState());
+  }
+
+  private void initializeController() {
+    this.controllers = new HashMap<StateValue, InteractorController>();
+    this.controllers.put(StateValue.IN_GAME, new PlayController(this.game, this.state));
+    this.controllers.put(StateValue.FINAL, new ResumeController(this.game, this.state));
+    this.controllers.put(StateValue.EXIT, null);
   }
 
 }
