@@ -48,8 +48,13 @@ class Turn {
   }
 
   public Turn copy() {
-    // TODO Auto-generated method stub
-    return null;
+    Turn turn = new Turn();
+    if (this.getColor().equals(Color.WHITE)) {
+      return turn;
+    } else {
+      turn.change();
+      return turn;
+    }
   }
 
 }
