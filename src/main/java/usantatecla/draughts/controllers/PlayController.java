@@ -7,43 +7,37 @@ import usantatecla.draughts.models.Session;
 
 public class PlayController extends UseCaseController implements AcceptorController {
 
-  private static final int MINIMUM_COORDINATES = 2;
+  private ActionController actionController;
   private UndoController undoController;
   private RedoController redoController;
 
   public PlayController(Session session) {
     super(session);
+    this.actionController = new ActionController(session);
     this.undoController = new UndoController(session);
     this.redoController = new RedoController(session);
-  }
-
-  public Error move(Coordinate... coordinates) {
-    assert coordinates.length >= MINIMUM_COORDINATES;
-    for (Coordinate coordinate : coordinates)
-      assert coordinate != null;
-    Error error = this.session.move(coordinates);
-    if (this.session.isBlocked())
-      this.session.next();
-    return error;
-  }
-
-  public void cancel() {
-    this.session.cancel();
-    this.session.next();
-  }
-
-  public Color getColor() {
-    return this.session.getTurnColor();
-  }
-
-  public boolean isBlocked() {
-    return this.session.isBlocked();
   }
 
   @Override
   public void accept(InteractorControllersVisitor controllersVisitor) {
     assert controllersVisitor != null;
     controllersVisitor.visit(this);
+  }
+
+  public Error move(Coordinate... coordinates) {
+    return this.actionController.move(coordinates);
+  }
+
+  public void cancel() {
+    this.actionController.cancel();
+  }
+
+  public Color getColor() {
+    return this.actionController.getColor();
+  }
+
+  public boolean isBlocked() {
+    return this.actionController.isBlocked();
   }
 
   public void undo() {
