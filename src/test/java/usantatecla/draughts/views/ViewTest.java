@@ -5,17 +5,18 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 import usantatecla.draughts.controllers.AcceptorController;
 import usantatecla.draughts.controllers.PlayController;
 import usantatecla.draughts.controllers.ResumeController;
 import usantatecla.draughts.utils.YesNoDialog;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ViewTest {
 
   @Mock
@@ -25,12 +26,7 @@ public class ViewTest {
   private YesNoDialog yesNoDialog;
 
   @InjectMocks
-  private final View view = new View();
-
-  @Before
-  public void before() {
-    MockitoAnnotations.initMocks(this);
-  }
+  private View view;
 
   @Test
   public void testVisitPlayViewVerifyInteractOnce() {

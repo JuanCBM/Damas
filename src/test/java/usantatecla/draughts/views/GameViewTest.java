@@ -9,16 +9,18 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 import usantatecla.draughts.controllers.UseCaseController;
 import usantatecla.draughts.models.Color;
 import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Draught;
 import usantatecla.draughts.models.Pawn;
 
+@RunWith(MockitoJUnitRunner.class)
 public class GameViewTest {
-  private GameView gameView;
   private final int DIMENSION = 5;
   private final Color black = Color.BLACK;
   private final Color white = Color.WHITE;
@@ -27,11 +29,12 @@ public class GameViewTest {
   @Mock
   UseCaseController useCaseController;
 
+  @InjectMocks
+  private GameView gameView;
+
   @Before
   public void setUp() {
-    MockitoAnnotations.initMocks(this);
     System.setOut(new PrintStream(outContent));
-    this.gameView = new GameView();
   }
 
   @Test
@@ -103,7 +106,6 @@ public class GameViewTest {
     when(this.useCaseController.getDimension()).thenReturn(DIMENSION);
     when(this.useCaseController.getPiece(coordinate(0, 0))).thenReturn(pawn(black));
     when(this.useCaseController.getPiece(coordinate(0, 2))).thenReturn(pawn(white));
-    when(this.useCaseController.getPiece(coordinate(0, 5))).thenReturn(null);
 
     this.gameView.write(useCaseController);
     assertEquals("1n b  1", boardLine(1));
