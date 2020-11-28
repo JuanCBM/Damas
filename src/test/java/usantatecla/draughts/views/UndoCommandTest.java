@@ -1,6 +1,8 @@
 package usantatecla.draughts.views;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +21,6 @@ public class UndoCommandTest {
   @Mock
   PlayController playController;
 
-
   @Before
   public void prepareGameBuilder() {
     this.undoCommand = new UndoCommand(this.playController);
@@ -30,6 +31,13 @@ public class UndoCommandTest {
     doNothing().when(this.playController).undo();
     this.undoCommand.execute();
     verify(this.playController).undo();
+  }
+
+  @Test
+  public void testUndoCommandWhenIsUndoableThenOk() {
+    doReturn(true).when(this.playController).undoable();
+    assertTrue(this.undoCommand.isUndoable());
+
   }
 
 }

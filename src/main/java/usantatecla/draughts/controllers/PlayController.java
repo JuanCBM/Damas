@@ -49,4 +49,8 @@ public class PlayController extends UseCaseController implements AcceptorControl
     this.undoController.undo();
   }
 
+  public boolean undoable() {
+    return false;
+  }
+
 }
