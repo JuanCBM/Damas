@@ -1,51 +1,39 @@
 package usantatecla.draughts.controllers;
 
-import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
-import usantatecla.draughts.models.Coordinate;
-import usantatecla.draughts.models.Game;
-import usantatecla.draughts.models.GameBuilder;
-import usantatecla.draughts.models.GameRegistry;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import usantatecla.draughts.models.Session;
 
+@RunWith(MockitoJUnitRunner.class)
 public class UndoRedoControllerTest {
 
-  Game game;
+  @InjectMocks
+  private UndoRedoController undoRedoController;
+
+  @Mock
+  private Session session;
 
   @Before
   public void before() {
-    this.game = game(GameBuilder.INITIAL_BOARD);
-  }
-
-  private static Game game(String... rows) {
-    return new GameBuilder().rows(rows).build();
+    this.undoRedoController = new UndoRedoController(this.session);
   }
 
   @Test
-  public void testGivenUndoControllerWhenUndoThenIsCorrect() {
-    GameRegistry registry = new GameRegistry(this.game);
-    // @formatter:off
-    Game gameAfterMove = game(  " n n n n",
-                                "n n n n ", 
-                                " n n n n", 
-                                "        ", 
-                                " b      ",
-                                "  b b b ", 
-                                " b b b b", 
-                                "b b b b ");
-    // @formatter:on
+  public void testGivenUndoControllerWhenUndoThenOk() {
 
-    this.game.getBoard().move(new Coordinate(5, 0), new Coordinate(4, 1));
+    undoRedoController.undo();
+    verify(this.session).undo();
+  }
 
-    registry.register();
-
-    UndoRedoController undoController = new UndoRedoController(new Session());
-    undoController.undo();
-
-    undoController.redo();
-
-    assertEquals(this.game.getBoard(), gameAfterMove.getBoard());
+  @Test
+  public void testGivenUndoControllerWhenRedoThenOk() {
+    undoRedoController.redo();
+    verify(this.session).redo();
 
   }
 }

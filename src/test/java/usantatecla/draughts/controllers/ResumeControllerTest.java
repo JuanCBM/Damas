@@ -1,46 +1,44 @@
 package usantatecla.draughts.controllers;
 
 
-import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import usantatecla.draughts.models.Session;
-import usantatecla.draughts.models.State;
-import usantatecla.draughts.models.StateValue;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ResumeControllerTest {
 
-  private State state;
+  @InjectMocks
   private ResumeController resumeController;
+
+  @Mock
+  private Session session;
 
   @Before
   public void before() {
-    this.state = new State();
-    this.resumeController = new ResumeController(new Session());
+    this.resumeController = new ResumeController(this.session);
   }
 
   @Test
-  public void givenResumeControllerWhenResumeGameMoveToInitialStateRequiereCorrectThenNotError() {
-    assertEquals(StateValue.IN_GAME, this.state.getValueState());
+  public void givenResumeControllerWhenNextThenOk() {
     resumeController.next();
-    assertEquals(StateValue.FINAL, this.state.getValueState());
+    verify(this.session).next();
+  }
+
+  @Test
+  public void givenResumeControllerWhenResetThenOk() {
     resumeController.reset();
-    assertEquals(StateValue.EXIT, this.state.getValueState());
+    verify(this.session).reset();
   }
 
   @Test(expected = AssertionError.class)
-  public void givenResumeControllerWhenResumeGameMoveOutThenError() {
-    assertEquals(StateValue.IN_GAME, this.state.getValueState());
-    resumeController.next();
-    assertEquals(StateValue.FINAL, this.state.getValueState());
-    resumeController.next();
-    assertEquals(StateValue.EXIT, this.state.getValueState());
-    resumeController.next();
-  }
-
-  @Test(expected = AssertionError.class)
-  public void testGivenResumeControllerWhenAcceptThenError() {
-    this.resumeController.accept(null);
+  public void testGivenPlayControllerWhenAcceptThenError() {
+    resumeController.accept(null);
   }
 
 }
