@@ -7,7 +7,7 @@ import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Game;
 import usantatecla.draughts.models.GameBuilder;
 import usantatecla.draughts.models.GameRegistry;
-import usantatecla.draughts.models.State;
+import usantatecla.draughts.models.Session;
 
 public class UndoControllerTest {
 
@@ -24,12 +24,13 @@ public class UndoControllerTest {
 
   @Test
   public void testGivenUndoControllerWhenUndoThenIsCorrect() {
+
     GameRegistry registry = new GameRegistry(this.game);
     this.game.getBoard().move(new Coordinate(5, 0), new Coordinate(4, 1));
 
     registry.register();
 
-    UndoRedoController undoController = new UndoRedoController(this.game, registry, new State());
+    UndoRedoController undoController = new UndoRedoController(new Session());
     undoController.undo();
 
     assertEquals(this.game.getBoard(), game(GameBuilder.INITIAL_BOARD).getBoard());

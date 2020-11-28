@@ -1,28 +1,19 @@
 package usantatecla.draughts.controllers;
 
-import usantatecla.draughts.models.Game;
-import usantatecla.draughts.models.GameRegistry;
-import usantatecla.draughts.models.State;
+import usantatecla.draughts.models.Session;
 
-public class UndoRedoController {
+public class UndoRedoController extends UseCaseController {
 
-  private Game game;
-  private GameRegistry registry;
-  private State state;
-
-  public UndoRedoController(Game game, GameRegistry registry, State state) {
-    this.state = new State();
-    this.game = new Game();
-    this.registry = registry;
+  UndoRedoController(Session session) {
+    super(session);
   }
 
-  public void undo() {
-    this.registry.undo();
+  void undo() {
+    this.session.undo();
   }
 
   public void redo() {
-    this.registry.redo();
+    this.session.redo();
   }
-
 
 }

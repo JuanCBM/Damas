@@ -7,7 +7,7 @@ import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Game;
 import usantatecla.draughts.models.GameBuilder;
 import usantatecla.draughts.models.GameRegistry;
-import usantatecla.draughts.models.State;
+import usantatecla.draughts.models.Session;
 
 public class RedoControllerTest {
 
@@ -40,7 +40,7 @@ public class RedoControllerTest {
 
     registry.register();
 
-    UndoRedoController undoController = new UndoRedoController(this.game, registry, new State());
+    UndoRedoController undoController = new UndoRedoController(new Session());
     undoController.undo();
 
     undoController.redo();
