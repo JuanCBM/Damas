@@ -11,7 +11,7 @@ public class PlayController extends UseCaseController implements AcceptorControl
   private UndoController undoController;
   private RedoController redoController;
 
-  public PlayController(Session session) {
+  PlayController(Session session) {
     super(session);
     this.actionController = new ActionController(session);
     this.undoController = new UndoController(session);

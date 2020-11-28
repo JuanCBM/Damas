@@ -8,7 +8,7 @@ import usantatecla.draughts.models.Session;
 public class ActionController extends UseCaseController {
   private static final int MINIMUM_COORDINATES = 2;
 
-  public ActionController(Session session) {
+  ActionController(Session session) {
     super(session);
   }
 

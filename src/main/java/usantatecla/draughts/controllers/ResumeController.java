@@ -4,7 +4,7 @@ import usantatecla.draughts.models.Session;
 
 public class ResumeController extends UseCaseController implements AcceptorController {
 
-  public ResumeController(Session session) {
+  ResumeController(Session session) {
     super(session);
   }
 
