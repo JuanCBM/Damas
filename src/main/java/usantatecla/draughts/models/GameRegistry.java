@@ -8,14 +8,14 @@ public class GameRegistry {
   private List<GameMemento> mementos;
   private int firstPrevious;
 
-  GameRegistry(Game game) {
+  public GameRegistry(Game game) {
     this.game = game;
     this.mementos = new ArrayList<GameMemento>();
     this.firstPrevious = 0;
     this.mementos.add(this.firstPrevious, this.game.createMemento());
   }
 
-  void register() {
+  public void register() {
     for (int i = 0; i < this.firstPrevious; i++) {
       this.mementos.remove(0);
       this.firstPrevious--;
@@ -31,7 +31,7 @@ public class GameRegistry {
     return this.game;
   }
 
-  void undo() {
+  public void undo() {
     this.firstPrevious++;
     this.game.set(this.mementos.get(this.firstPrevious));
   }

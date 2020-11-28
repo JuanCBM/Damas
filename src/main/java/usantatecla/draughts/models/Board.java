@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class Board {
+public class Board {
 
   private Piece[][] pieces;
 
@@ -31,7 +31,7 @@ class Board {
     return piece;
   }
 
-  void move(Coordinate origin, Coordinate target) {
+  public void move(Coordinate origin, Coordinate target) {
     assert this.getPiece(origin) != null;
     this.put(target, this.remove(origin));
   }
