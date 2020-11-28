@@ -9,7 +9,7 @@ import usantatecla.draughts.models.GameBuilder;
 import usantatecla.draughts.models.GameRegistry;
 import usantatecla.draughts.models.Session;
 
-public class RedoControllerTest {
+public class UndoRedoControllerTest {
 
   Game game;
 
