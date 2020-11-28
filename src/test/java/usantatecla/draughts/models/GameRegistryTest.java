@@ -7,8 +7,6 @@ import org.junit.Test;
 
 public class GameRegistryTest {
 
-  Game game;
-
   private static Game game(String... rows) {
     return new GameBuilder().rows(rows).build();
   }
@@ -75,6 +73,35 @@ public class GameRegistryTest {
     registry.register();
 
     registry.undo();
+
+    for (int i = 0; i < mementos.size(); i++) {
+      assertEquals(mementos.get(i).getBoard(), registry.getGame().getBoard());
+    }
+
+  }
+
+  @Test
+  public void testGivenGameRegistryWhenRedoThenIsCorrect() {
+    // @formatter:off
+    Game gameAfterMove = game(  " n n n n",
+                                "n n n n ", 
+                                " n n n n", 
+                                "        ", 
+                                " b      ",
+                                "  b b b ", 
+                                " b b b b", 
+                                "b b b b ");
+    // @formatter:on
+
+    List<GameMemento> mementos = new ArrayList<>();
+    GameMemento gameMemento = new GameMemento(new Turn(), gameAfterMove.getBoard());
+    mementos.add(gameMemento);
+
+    GameRegistry registry = new GameRegistry(gameAfterMove);
+    gameAfterMove.getBoard().move(new Coordinate(5, 0), new Coordinate(4, 1));
+    registry.register();
+    registry.undo();
+    registry.redo();
 
     for (int i = 0; i < mementos.size(); i++) {
       assertEquals(mementos.get(i).getBoard(), registry.getGame().getBoard());
