@@ -2,10 +2,10 @@ package usantatecla.draughts.views;
 
 import usantatecla.draughts.controllers.PlayController;
 
-public class PlayCommand {
+public class PlayCommand extends Command {
 
-  public PlayCommand(PlayController playController) {
-    // TODO Auto-generated constructor stub
+  PlayCommand(PlayController playController) {
+    super(Message.ACTION_COMMAND.getMessage(), playController);
   }
 
   public void execute() {
@@ -14,8 +14,7 @@ public class PlayCommand {
   }
 
   public boolean isActive() {
-    // TODO Auto-generated method stub
-    return false;
+    return true;
   }
 
 }

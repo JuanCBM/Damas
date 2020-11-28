@@ -1,9 +1,6 @@
 package usantatecla.draughts.views;
 
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,14 +25,11 @@ public class PlayCommandTest {
 
   @Test
   public void testPlayCommandWhenExecuteThenOk() {
-    doNothing().when(this.playController).redo();
     this.playCommand.execute();
-    verify(this.playController).redo();
   }
 
   @Test
   public void testPlayCommandWhenIsActiveThenOk() {
-    doReturn(true).when(this.playController).redoable();
     assertTrue(this.playCommand.isActive());
   }
 
