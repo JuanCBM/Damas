@@ -7,6 +7,7 @@ public class Session {
   private State state;
 
   public Session() {
+    this.state = new State();
     this.game = new Game();
     this.registry = new GameRegistry(this.game);
   }
@@ -29,43 +30,36 @@ public class Session {
   }
 
   public boolean isBlocked() {
-    // TODO Auto-generated method stub
-    return false;
+    return this.game.isBlocked();
   }
 
   public Error move(Coordinate[] coordinates) {
-    // TODO Auto-generated method stub
-    return null;
+    return this.game.move(coordinates);
   }
 
   public void cancel() {
-    // TODO Auto-generated method stub
-
+    this.game.cancel();
+    this.state.reset();
   }
 
   public void next() {
-    // TODO Auto-generated method stub
-
+    this.state.next();
   }
 
   public Color getTurnColor() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.game.getTurnColor();
   }
 
-  public Object getValueState() {
-    // TODO Auto-generated method stub
-    return null;
+  public StateValue getValueState() {
+    return this.state.getValueState();
   }
 
   public int getDimension() {
-    // TODO Auto-generated method stub
-    return 0;
+    return this.game.getDimension();
   }
 
   public Color getColor(Coordinate coordinate) {
-    // TODO Auto-generated method stub
-    return null;
+    return this.game.getColor(coordinate);
   }
 
 }

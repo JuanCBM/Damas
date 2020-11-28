@@ -151,13 +151,12 @@ public class Game {
   }
 
   public GameMemento createMemento() {
-    GameMemento memento = new GameMemento(turn, board);
-
-    return memento;
+    return new GameMemento(turn, board);
   }
 
   public void set(GameMemento gameMemento) {
     this.board = gameMemento.getBoard();
+    this.turn = gameMemento.getTurn();
   }
 
   @Override
