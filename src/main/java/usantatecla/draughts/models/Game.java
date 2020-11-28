@@ -151,8 +151,7 @@ public class Game {
   }
 
   public GameMemento createMemento() {
-    GameMemento memento = new GameMemento();
-    memento.set(this.board.copy());
+    GameMemento memento = new GameMemento(turn, board);
 
     return memento;
   }

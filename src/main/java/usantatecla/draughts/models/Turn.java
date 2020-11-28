@@ -47,4 +47,9 @@ class Turn {
     return true;
   }
 
+  public Turn copy() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 }
