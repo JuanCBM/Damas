@@ -45,7 +45,6 @@ public class RedoControllerTest {
 
     undoController.redo();
 
-
     assertEquals(this.game.getBoard(), gameAfterMove.getBoard());
 
   }

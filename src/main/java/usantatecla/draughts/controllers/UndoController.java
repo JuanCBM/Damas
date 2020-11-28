@@ -21,8 +21,7 @@ public class UndoController {
   }
 
   public void redo() {
-    // TODO Auto-generated method stub
-
+    this.registry.redo();
   }
 
 

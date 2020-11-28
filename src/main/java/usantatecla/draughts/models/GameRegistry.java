@@ -36,7 +36,7 @@ public class GameRegistry {
     this.game.set(this.mementos.get(this.firstPrevious));
   }
 
-  void redo() {
+  public void redo() {
     this.firstPrevious--;
     this.game.set(this.mementos.get(this.firstPrevious));
   }
