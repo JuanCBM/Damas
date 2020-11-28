@@ -14,7 +14,9 @@ import org.junit.runners.Suite.SuiteClasses;
         PieceParameterizedTest.class,
         StateTest.class,
         ColorTest.class,
-        DirectionParametrizedTest.class
+        DirectionParametrizedTest.class,
+        GameRegistryTest.class,
+        GameMementoTest.class
 })
 public class AllModelsTests {
 }

@@ -36,9 +36,9 @@ public class GameRegistry {
     this.game.set(this.mementos.get(this.firstPrevious));
   }
 
-  public void redo() {
-    // TODO Auto-generated method stub
-
+  void redo() {
+    this.firstPrevious--;
+    this.game.set(this.mementos.get(this.firstPrevious));
   }
 
 }
