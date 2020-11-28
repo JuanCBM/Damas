@@ -63,4 +63,9 @@ public class Session {
     return 0;
   }
 
+  public Color getColor(Coordinate coordinate) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 }
