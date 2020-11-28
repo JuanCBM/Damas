@@ -45,4 +45,8 @@ public class GameRegistry {
     return this.firstPrevious < this.mementos.size() - 1;
   }
 
+  boolean isRedoable() {
+    return this.firstPrevious >= 1;
+  }
+
 }

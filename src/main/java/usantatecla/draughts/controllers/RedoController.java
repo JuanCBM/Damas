@@ -12,4 +12,8 @@ public class RedoController extends UseCaseController {
     this.session.redo();
   }
 
+  public boolean redoable() {
+    return this.session.redoable();
+  }
+
 }

@@ -9,11 +9,12 @@ public class PlayController extends UseCaseController implements AcceptorControl
 
   private static final int MINIMUM_COORDINATES = 2;
   private UndoController undoController;
+  private RedoController redoController;
 
   public PlayController(Session session) {
     super(session);
     this.undoController = new UndoController(session);
-
+    this.redoController = new RedoController(session);
   }
 
   public Error move(Coordinate... coordinates) {
@@ -49,8 +50,17 @@ public class PlayController extends UseCaseController implements AcceptorControl
     this.undoController.undo();
   }
 
+  public void redo() {
+    this.redoController.redo();
+  }
+
   public boolean undoable() {
     return this.undoController.undoable();
   }
+
+  public boolean redoable() {
+    return this.redoController.redoable();
+  }
+
 
 }
