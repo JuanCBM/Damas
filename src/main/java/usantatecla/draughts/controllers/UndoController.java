@@ -8,8 +8,13 @@ public class UndoController extends UseCaseController {
     super(session);
   }
 
-  void undo() {
+  public void undo() {
     this.session.undo();
+  }
+
+  public void execute() {
+    // TODO Auto-generated method stub
+
   }
 
 }
