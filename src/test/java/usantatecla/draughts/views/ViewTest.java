@@ -54,7 +54,6 @@ public class ViewTest {
     verifyNoMoreInteractions(resumeController);
   }
 
-
   @Test
   public void testInteractControllerVerifyAcceptOnce() {
     AcceptorController acceptorController = mock(AcceptorController.class);

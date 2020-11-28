@@ -13,30 +13,30 @@ import org.mockito.junit.MockitoJUnitRunner;
 import usantatecla.draughts.controllers.PlayController;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UndoCommandTest {
+public class PlayCommandTest {
+
+  @InjectMocks
+  PlayCommand playCommand;
 
   @Mock
   PlayController playController;
 
-  @InjectMocks
-  UndoCommand undoCommand;
-
   @Before
   public void setUp() {
-    this.undoCommand = new UndoCommand(this.playController);
+    this.playCommand = new PlayCommand(this.playController);
   }
 
   @Test
-  public void testUndoCommandWhenExecuteThenOk() {
-    doNothing().when(this.playController).undo();
-    this.undoCommand.execute();
-    verify(this.playController).undo();
+  public void testPlayCommandWhenExecuteThenOk() {
+    doNothing().when(this.playController).redo();
+    this.playCommand.execute();
+    verify(this.playController).redo();
   }
 
   @Test
-  public void testUndoCommandWhenIsActiveThenOk() {
-    doReturn(true).when(this.playController).undoable();
-    assertTrue(this.undoCommand.isActive());
+  public void testPlayCommandWhenIsActiveThenOk() {
+    doReturn(true).when(this.playController).redoable();
+    assertTrue(this.playCommand.isActive());
   }
 
 }

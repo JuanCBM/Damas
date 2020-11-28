@@ -22,7 +22,7 @@ public class RedoCommandTest {
   PlayController playController;
 
   @Before
-  public void prepareGameBuilder() {
+  public void setUp() {
     this.redoCommand = new RedoCommand(this.playController);
   }
 
@@ -34,7 +34,7 @@ public class RedoCommandTest {
   }
 
   @Test
-  public void testRedoCommandWhenIsRedoableThenOk() {
+  public void testRedoCommandWhenIsActiveThenOk() {
     doReturn(true).when(this.playController).redoable();
     assertTrue(this.redoCommand.isActive());
   }
