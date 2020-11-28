@@ -1,27 +1,25 @@
 package usantatecla.draughts.controllers;
 
-import usantatecla.draughts.models.Game;
-import usantatecla.draughts.models.State;
+import usantatecla.draughts.models.Session;
 
-public class ResumeController extends InteractorController {
+public class ResumeController extends UseCaseController implements AcceptorController {
 
-	public ResumeController(Game game, State state) {
-        super(game, state);
-	}
+  public ResumeController(Session session) {
+    super(session);
+  }
 
-	public void next() {
-        this.state.next();
-	}
+  public void next() {
+    this.session.next();
+  }
 
-	public void reset() {
-		this.state.reset();
-		this.game.reset();
-	}
+  public void reset() {
+    this.session.reset();
+  }
 
-    @Override
-	public void accept(InteractorControllersVisitor controllersVisitor) {
-		assert controllersVisitor != null;
-		controllersVisitor.visit(this);
-	}
+  @Override
+  public void accept(InteractorControllersVisitor controllersVisitor) {
+    assert controllersVisitor != null;
+    controllersVisitor.visit(this);
+  }
 
 }

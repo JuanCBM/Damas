@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import usantatecla.draughts.controllers.InteractorController;
+import usantatecla.draughts.controllers.AcceptorController;
 import usantatecla.draughts.controllers.PlayController;
 import usantatecla.draughts.controllers.ResumeController;
 import usantatecla.draughts.utils.YesNoDialog;
@@ -61,10 +61,10 @@ public class ViewTest {
 
   @Test
   public void testInteractControllerVerifyAcceptOnce() {
-    InteractorController interactorController = mock(InteractorController.class);
-    this.view.interact(interactorController);
-    verify(interactorController, times(1)).accept(this.view);
-    verifyNoMoreInteractions(interactorController);
+    AcceptorController acceptorController = mock(AcceptorController.class);
+    this.view.interact(acceptorController);
+    verify(acceptorController, times(1)).accept(this.view);
+    verifyNoMoreInteractions(acceptorController);
   }
 
   @Test(expected = AssertionError.class)

@@ -1,6 +1,6 @@
 package usantatecla.draughts.views;
 
-import usantatecla.draughts.controllers.InteractorController;
+import usantatecla.draughts.controllers.AcceptorController;
 import usantatecla.draughts.controllers.InteractorControllersVisitor;
 import usantatecla.draughts.controllers.PlayController;
 import usantatecla.draughts.controllers.ResumeController;
@@ -18,7 +18,7 @@ public class View implements InteractorControllersVisitor {
     this.playView = new PlayView();
   }
 
-  public void interact(InteractorController controller) {
+  public void interact(AcceptorController controller) {
     assert controller != null;
     controller.accept(this);
   }

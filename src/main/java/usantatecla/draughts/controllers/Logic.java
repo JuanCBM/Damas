@@ -2,30 +2,27 @@ package usantatecla.draughts.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
-import usantatecla.draughts.models.Game;
-import usantatecla.draughts.models.State;
+import usantatecla.draughts.models.Session;
 import usantatecla.draughts.models.StateValue;
 
 public class Logic {
 
-  private Game game;
-  private State state;
-  private Map<StateValue, InteractorController> controllers;
+  private Session session;
+  private Map<StateValue, AcceptorController> controllers;
 
   public Logic() {
-    this.game = new Game();
-    this.state = new State();
+    this.session = new Session();
     this.initializeController();
   }
 
-  public InteractorController getController() {
-    return this.controllers.get(this.state.getValueState());
+  public AcceptorController getController() {
+    return this.controllers.get(this.session.getValueState());
   }
 
   private void initializeController() {
-    this.controllers = new HashMap<StateValue, InteractorController>();
-    this.controllers.put(StateValue.IN_GAME, new PlayController(this.game, this.state));
-    this.controllers.put(StateValue.FINAL, new ResumeController(this.game, this.state));
+    this.controllers = new HashMap<StateValue, AcceptorController>();
+    this.controllers.put(StateValue.IN_GAME, new PlayController(this.session));
+    this.controllers.put(StateValue.FINAL, new ResumeController(this.session));
     this.controllers.put(StateValue.EXIT, null);
   }
 

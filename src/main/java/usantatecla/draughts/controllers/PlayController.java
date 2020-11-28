@@ -2,46 +2,44 @@ package usantatecla.draughts.controllers;
 
 import usantatecla.draughts.models.Color;
 import usantatecla.draughts.models.Coordinate;
-import usantatecla.draughts.models.State;
 import usantatecla.draughts.models.Error;
-import usantatecla.draughts.models.Game;
+import usantatecla.draughts.models.Session;
 
-public class PlayController extends InteractorController {
+public class PlayController extends UseCaseController implements AcceptorController {
 
-	private static final int MINIMUM_COORDINATES = 2;
+  private static final int MINIMUM_COORDINATES = 2;
 
+  public PlayController(Session session) {
+    super(session);
+  }
 
-	public PlayController(Game game, State state) {
-		super(game, state);
-	}
+  public Error move(Coordinate... coordinates) {
+    assert coordinates.length >= MINIMUM_COORDINATES;
+    for (Coordinate coordinate : coordinates)
+      assert coordinate != null;
+    Error error = this.session.move(coordinates);
+    if (this.session.isBlocked())
+      this.session.next();
+    return error;
+  }
 
-	public Error move(Coordinate... coordinates) {
-		assert coordinates.length >= MINIMUM_COORDINATES;
-		for (Coordinate coordinate : coordinates)
-			assert coordinate != null;
-		Error error = this.game.move(coordinates);
-		if (this.game.isBlocked())
-			this.state.next();
-		return error;
-	}
+  public void cancel() {
+    this.session.cancel();
+    this.session.next();
+  }
 
-	public void cancel() {
-		this.game.cancel();
-		this.state.next();
-	}
+  public Color getColor() {
+    return this.session.getTurnColor();
+  }
 
-	public Color getColor() {
-		return this.game.getTurnColor();
-	}
+  public boolean isBlocked() {
+    return this.session.isBlocked();
+  }
 
-	public boolean isBlocked() {
-		return this.game.isBlocked();
-	}
-
-	@Override
-	public void accept(InteractorControllersVisitor controllersVisitor) {
-		assert controllersVisitor != null;
-		controllersVisitor.visit(this);
-	}
+  @Override
+  public void accept(InteractorControllersVisitor controllersVisitor) {
+    assert controllersVisitor != null;
+    controllersVisitor.visit(this);
+  }
 
 }
