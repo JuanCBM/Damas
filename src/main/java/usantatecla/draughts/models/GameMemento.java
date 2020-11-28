@@ -10,22 +10,12 @@ public class GameMemento {
     this.turn = turn.copy();
   }
 
-  public void set(Board board) {
-    this.board = board;
-  }
-
   public Board getBoard() {
     return this.board;
   }
 
   public Turn getTurn() {
-    return null;
+    return this.turn;
   }
-
-  public void setTurn(Turn turn) {
-
-  }
-
-
 
 }

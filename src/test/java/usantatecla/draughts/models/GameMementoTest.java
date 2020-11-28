@@ -19,8 +19,6 @@ public class GameMementoTest {
     Turn turn = new Turn();
     Board board = new Board();
     GameMemento gameMemento = new GameMemento(turn, board);
-    gameMemento.setTurn(turn);
-    gameMemento.set(board);
 
     assertEquals(turn, gameMemento.getTurn());
   }
