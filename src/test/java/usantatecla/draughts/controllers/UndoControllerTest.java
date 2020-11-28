@@ -29,7 +29,7 @@ public class UndoControllerTest {
 
     registry.register();
 
-    UndoController undoController = new UndoController(this.game, registry, new State());
+    UndoRedoController undoController = new UndoRedoController(this.game, registry, new State());
     undoController.undo();
 
     assertEquals(this.game.getBoard(), game(GameBuilder.INITIAL_BOARD).getBoard());

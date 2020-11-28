@@ -40,7 +40,7 @@ public class RedoControllerTest {
 
     registry.register();
 
-    UndoController undoController = new UndoController(this.game, registry, new State());
+    UndoRedoController undoController = new UndoRedoController(this.game, registry, new State());
     undoController.undo();
 
     undoController.redo();

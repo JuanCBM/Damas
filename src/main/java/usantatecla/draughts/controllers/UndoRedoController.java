@@ -4,13 +4,13 @@ import usantatecla.draughts.models.Game;
 import usantatecla.draughts.models.GameRegistry;
 import usantatecla.draughts.models.State;
 
-public class UndoController {
+public class UndoRedoController {
 
   private Game game;
   private GameRegistry registry;
   private State state;
 
-  public UndoController(Game game, GameRegistry registry, State state) {
+  public UndoRedoController(Game game, GameRegistry registry, State state) {
     this.state = new State();
     this.game = new Game();
     this.registry = registry;
