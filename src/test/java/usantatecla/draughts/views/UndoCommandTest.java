@@ -1,12 +1,14 @@
 package usantatecla.draughts.views;
 
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import usantatecla.draughts.controllers.UndoController;
+import usantatecla.draughts.controllers.PlayController;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UndoCommandTest {
@@ -15,12 +17,19 @@ public class UndoCommandTest {
   UndoCommand undoCommand;
 
   @Mock
-  UndoController undoController;
+  PlayController playController;
+
+
+  @Before
+  public void prepareGameBuilder() {
+    this.undoCommand = new UndoCommand(this.playController);
+  }
 
   @Test
   public void testUndoCommandWhenExecuteThenOk() {
-    this.undoController.execute();
-    verify(this.undoController).undo();
+    doNothing().when(this.playController).undo();
+    this.undoCommand.execute();
+    verify(this.playController).undo();
   }
 
 }

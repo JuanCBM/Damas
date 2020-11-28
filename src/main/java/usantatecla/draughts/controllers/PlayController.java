@@ -8,9 +8,12 @@ import usantatecla.draughts.models.Session;
 public class PlayController extends UseCaseController implements AcceptorController {
 
   private static final int MINIMUM_COORDINATES = 2;
+  private UndoController undoController;
 
   public PlayController(Session session) {
     super(session);
+    this.undoController = new UndoController(session);
+
   }
 
   public Error move(Coordinate... coordinates) {
@@ -40,6 +43,10 @@ public class PlayController extends UseCaseController implements AcceptorControl
   public void accept(InteractorControllersVisitor controllersVisitor) {
     assert controllersVisitor != null;
     controllersVisitor.visit(this);
+  }
+
+  public void undo() {
+    this.undoController.undo();
   }
 
 }
