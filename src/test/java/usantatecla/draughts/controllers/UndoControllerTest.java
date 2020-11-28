@@ -10,30 +10,23 @@ import org.mockito.junit.MockitoJUnitRunner;
 import usantatecla.draughts.models.Session;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UndoRedoControllerTest {
+public class UndoControllerTest {
 
   @InjectMocks
-  private UndoRedoController undoRedoController;
+  private UndoController undoController;
 
   @Mock
   private Session session;
 
   @Before
   public void before() {
-    this.undoRedoController = new UndoRedoController(this.session);
+    this.undoController = new UndoController(this.session);
   }
 
   @Test
   public void testGivenUndoControllerWhenUndoThenOk() {
-
-    undoRedoController.undo();
+    undoController.undo();
     verify(this.session).undo();
   }
 
-  @Test
-  public void testGivenUndoControllerWhenRedoThenOk() {
-    undoRedoController.redo();
-    verify(this.session).redo();
-
-  }
 }
