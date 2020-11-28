@@ -196,4 +196,8 @@ public class Game {
     return true;
   }
 
+  public Board getBoard() {
+    return this.board;
+  }
+
 }

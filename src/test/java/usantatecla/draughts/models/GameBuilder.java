@@ -4,7 +4,16 @@ public class GameBuilder {
 
 	Game game;
 	Board board;
-	
+	public static String[] INITIAL_BOARD = {
+	     " n n n n",
+         "n n n n ", 
+         " n n n n", 
+         "        ", 
+         "        ",
+         "b b b b ", 
+         " b b b b", 
+         "b b b b "};
+	 
 	public GameBuilder() {
 		this.board = new Board();
 		this.game = new Game(this.board);

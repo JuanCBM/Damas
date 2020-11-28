@@ -32,29 +32,35 @@ public class GameRegistryTest {
 
   @Test
   public void testGivenGameRegistryWhenRegistryThenIsCorrect() {
-    // @formatter:off
-    Game game = game(
-        "        ",
-        "        ",
-        " n   n  ",
-        "  n n   ",
-        "   b    ",
-        "        ",
-        "        ",
-        "        ");
-    // @formatter:on
-    GameRegistry registry = new GameRegistry(game);
-    registry.register();
+    Game game = game(GameBuilder.INITIAL_BOARD);
 
     List<GameMemento> mementos = new ArrayList<>();
-    GameMemento gameMemento = new GameMemento(new Turn(), new Board());
+    GameMemento gameMemento = new GameMemento(new Turn(), game.getBoard());
     mementos.add(gameMemento);
 
-    assertEquals(mementos, registry.getMementos());
+    // @formatter:off
+    Game gameAfterMove = game(  " n n n n",
+                                "n n n n ", 
+                                " n n n n", 
+                                "        ", 
+                                " b      ",
+                                "  b b b ", 
+                                " b b b b", 
+                                "b b b b ");
+    // @formatter:on
 
+    GameMemento gameMementoAfterMove = new GameMemento(new Turn(), gameAfterMove.getBoard());
+    mementos.add(0, gameMementoAfterMove);
+
+    GameRegistry registry = new GameRegistry(game);
+    game.getBoard().move(new Coordinate(5, 0), new Coordinate(4, 1));
+    registry.register();
+
+    for (int i = 0; i < mementos.size(); i++) {
+      assertEquals(mementos.get(i).getBoard(), registry.getMementos().get(i).getBoard());
+    }
 
   }
-
 
 
 }
