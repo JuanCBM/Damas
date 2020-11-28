@@ -23,5 +23,15 @@ public class GameMementoTest {
     assertEquals(turn, gameMemento.getTurn());
   }
 
+  @Test
+  public void testGivenGameMementoWithTurnChangedThenIsEqualToOriginalTurn() {
+    Turn turn = new Turn();
+    turn.change();
+    Board board = new Board();
+    GameMemento gameMemento = new GameMemento(turn, board);
+
+    assertEquals(turn, gameMemento.getTurn());
+  }
+
 
 }
