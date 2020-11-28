@@ -12,9 +12,8 @@ public class UndoController extends UseCaseController {
     this.session.undo();
   }
 
-  public void execute() {
-    // TODO Auto-generated method stub
-
+  public boolean undoable() {
+    return this.session.undoable();
   }
 
 }

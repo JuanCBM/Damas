@@ -41,4 +41,8 @@ public class GameRegistry {
     this.game.set(this.mementos.get(this.firstPrevious));
   }
 
+  boolean isUndoable() {
+    return this.firstPrevious < this.mementos.size() - 1;
+  }
+
 }

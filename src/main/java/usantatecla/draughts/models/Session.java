@@ -62,4 +62,8 @@ public class Session {
     return this.game.getColor(coordinate);
   }
 
+  public boolean undoable() {
+    return this.registry.isUndoable();
+  }
+
 }

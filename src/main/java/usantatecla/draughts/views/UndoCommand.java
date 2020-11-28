@@ -14,7 +14,7 @@ public class UndoCommand {
   }
 
   public boolean isUndoable() {
-    return false;
+    return this.playController.undoable();
   }
 
 }

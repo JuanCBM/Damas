@@ -37,7 +37,6 @@ public class UndoCommandTest {
   public void testUndoCommandWhenIsUndoableThenOk() {
     doReturn(true).when(this.playController).undoable();
     assertTrue(this.undoCommand.isUndoable());
-
   }
 
 }
