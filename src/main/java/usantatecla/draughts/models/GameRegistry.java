@@ -31,9 +31,9 @@ public class GameRegistry {
     return this.game;
   }
 
-  public void undo() {
-    // TODO Auto-generated method stub
-
+  void undo() {
+    this.firstPrevious++;
+    this.game.set(this.mementos.get(this.firstPrevious));
   }
 
 }

@@ -77,7 +77,7 @@ public class GameRegistryTest {
     registry.undo();
 
     for (int i = 0; i < mementos.size(); i++) {
-      assertEquals(mementos.get(i).getBoard(), registry.getMementos().get(i).getBoard());
+      assertEquals(mementos.get(i).getBoard(), registry.getGame().getBoard());
     }
 
   }
