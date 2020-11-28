@@ -24,11 +24,12 @@ public class UndoControllerTest {
 
   @Test
   public void testGivenUndoControllerWhenUndoThenIsCorrect() {
-    State state = new State();
     GameRegistry registry = new GameRegistry(this.game);
     this.game.getBoard().move(new Coordinate(5, 0), new Coordinate(4, 1));
 
-    UndoController undoController = new UndoController(this.game, registry, state);
+    registry.register();
+
+    UndoController undoController = new UndoController(this.game, registry, new State());
     undoController.undo();
 
     assertEquals(this.game.getBoard(), game(GameBuilder.INITIAL_BOARD).getBoard());

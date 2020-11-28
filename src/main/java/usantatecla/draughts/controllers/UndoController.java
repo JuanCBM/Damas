@@ -6,13 +6,19 @@ import usantatecla.draughts.models.State;
 
 public class UndoController {
 
+  private Game game;
+  private GameRegistry registry;
+  private State state;
+
   public UndoController(Game game, GameRegistry registry, State state) {
-    // TODO Auto-generated constructor stub
+    this.state = new State();
+    this.game = new Game();
+    this.registry = registry;
   }
 
   public void undo() {
-    // TODO Auto-generated method stub
-
+    this.registry.undo();
   }
+
 
 }
