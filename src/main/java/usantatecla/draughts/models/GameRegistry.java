@@ -31,4 +31,9 @@ public class GameRegistry {
     return this.game;
   }
 
+  public void undo() {
+    // TODO Auto-generated method stub
+
+  }
+
 }

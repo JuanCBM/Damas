@@ -62,5 +62,24 @@ public class GameRegistryTest {
 
   }
 
+  @Test
+  public void testGivenGameRegistryWhenUndoThenIsCorrect() {
+    Game game = game(GameBuilder.INITIAL_BOARD);
+
+    List<GameMemento> mementos = new ArrayList<>();
+    GameMemento gameMemento = new GameMemento(new Turn(), game.getBoard());
+    mementos.add(gameMemento);
+
+    GameRegistry registry = new GameRegistry(game);
+    game.getBoard().move(new Coordinate(5, 0), new Coordinate(4, 1));
+    registry.register();
+
+    registry.undo();
+
+    for (int i = 0; i < mementos.size(); i++) {
+      assertEquals(mementos.get(i).getBoard(), registry.getMementos().get(i).getBoard());
+    }
+
+  }
 
 }
