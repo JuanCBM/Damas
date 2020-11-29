@@ -15,7 +15,7 @@ import usantatecla.draughts.controllers.PlayController;
 public class RedoCommandTest {
 
   @InjectMocks
-  RedoCommand redoCommand;
+  RedoCommand redoCommand = new RedoCommand(this.playController);
 
   @Mock
   PlayController playController;

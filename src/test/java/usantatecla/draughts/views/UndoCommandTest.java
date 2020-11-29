@@ -14,11 +14,11 @@ import usantatecla.draughts.controllers.PlayController;
 @RunWith(MockitoJUnitRunner.class)
 public class UndoCommandTest {
 
+  @InjectMocks
+  UndoCommand undoCommand = new UndoCommand(this.playController);
+
   @Mock
   PlayController playController;
-
-  @InjectMocks
-  UndoCommand undoCommand;
 
   @Test
   public void testUndoCommandWhenExecuteThenOk() {
