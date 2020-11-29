@@ -34,7 +34,11 @@ public class Session {
   }
 
   public Error move(Coordinate[] coordinates) {
-    return this.game.move(coordinates);
+    Error error = this.game.move(coordinates);
+    if (error != null) {
+      this.registry.register();
+    }
+    return error;
   }
 
   public void cancel() {
