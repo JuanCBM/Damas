@@ -27,5 +27,6 @@
 
 - [x] [refactor.mvp.pv](https://github.com/JuanCBM/Damas/tree/refactor.mvp.pv) 
 
+- [x] [tdd.refactor.composite](https://github.com/JuanCBM/Damas/tree/tdd.refactor.composite) 
 
 - [ ] Next Implementations
